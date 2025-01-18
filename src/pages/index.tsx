@@ -1,5 +1,5 @@
-import { Header } from "@components/Header/Index";
-import Button from "@mui/material/Button";
+// Start of Selection
+import { Header } from "@components/header/index"; // 파일 이름 대소문자 수정
 
 const IndexPage = () => {
   return (
