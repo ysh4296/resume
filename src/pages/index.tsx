@@ -13,6 +13,7 @@ const headingStyles = {
 const headingAccentStyles = {
   color: "#663399",
 };
+
 const paragraphStyles = {
   marginBottom: 48,
 };
@@ -84,7 +85,7 @@ const links = [
     description:
       "A great place to get started if you're new to web development. Designed to guide you through setting up your first Gatsby site.",
     color: "#E95800",
-    badge:true,
+    badge: true,
   },
   {
     text: "How to Guides",
@@ -92,7 +93,7 @@ const links = [
     description:
       "Practical step-by-step guides to help you achieve a specific goal. Most useful when you're trying to get something done.",
     color: "#1099A8",
-    badge:true,
+    badge: true,
   },
   {
     text: "Reference Guides",
@@ -100,7 +101,7 @@ const links = [
     description:
       "Nitty-gritty technical descriptions of how Gatsby works. Most useful when you need detailed information about Gatsby's APIs.",
     color: "#BC027F",
-    badge:true,
+    badge: true,
   },
   {
     text: "Conceptual Guides",
@@ -108,7 +109,7 @@ const links = [
     description:
       "Big-picture explanations of higher-level Gatsby concepts. Most useful for building understanding of a particular topic.",
     color: "#0D96F2",
-    badge:true,
+    badge: true,
   },
   {
     text: "Plugin Library",
@@ -116,7 +117,7 @@ const links = [
     description:
       "Add functionality and customize your Gatsby site or app with thousands of plugins built by our amazing developer community.",
     color: "#8EB814",
-    badge:true,
+    badge: true,
   },
 ];
 
