@@ -1,10 +1,16 @@
 // Start of Selection
-import { Header } from "@components/header/index"; // 파일 이름 대소문자 수정
+
+import GithubStats from "@contents/githubStats";
+import Intro from "@contents/intro";
+import { Stack } from "@mui/material";
 
 const IndexPage = () => {
   return (
     <main>
-      <Header />
+      <Stack direction="row">
+        <GithubStats />
+        <Intro />
+      </Stack>
     </main>
   );
 };

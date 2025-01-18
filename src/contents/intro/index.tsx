@@ -1,7 +1,7 @@
 import Typography from "@mui/material/Typography";
 import Description from "./Description";
 
-export const Header = () => {
+const Intro = () => {
   return (
     <>
       <Typography variant="h3">안녕하세요 개발자 유승훈입니다.</Typography>
@@ -9,3 +9,5 @@ export const Header = () => {
     </>
   );
 };
+
+export default Intro;
