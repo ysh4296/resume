@@ -1,5 +1,4 @@
 import Body from "@components/Body";
-import { Typography } from "@mui/material";
 
 const Description = () => {
   return (
@@ -14,9 +13,9 @@ const Description = () => {
         UI개발을 수행하였습니다.
       </Body>
       <Body>
-        인턴쉽 이후에는 개인프로젝트와 오픈소스를 찾아 다양한 도메인에서
-        클라이언트 개발을 시도하고 있으며, 개발자의 본질 "무언가를 만드는
-        사람"에 충실하게 살고 있습니다.
+        최근에는 개인프로젝트와 오픈소스를 찾아 다양한 도메인에서 클라이언트
+        개발을 시도하고 있으며, 개발자의 본질 "무언가를 만드는 사람"에 충실하게
+        생활하고 있습니다.
       </Body>
     </>
   );
