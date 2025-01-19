@@ -10,5 +10,11 @@ module.exports = {
     title: "Gatsby + Vercel",
     siteUrl: "https://gatsby-template.vercel.app/",
   },
-  plugins: ["gatsby-plugin-typescript", "gatsby-plugin-material-ui"],
+  plugins: [
+    "gatsby-plugin-typescript",
+    "gatsby-plugin-material-ui",
+    "gatsby-plugin-image",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
+  ],
 };

@@ -1,14 +1,15 @@
-// Start of Selection
-
-import GithubStats from "@contents/githubStats";
+import ContentBox from "@components/ContentBox";
 import Intro from "@contents/intro";
 import { Stack } from "@mui/material";
+import { StaticImage } from "gatsby-plugin-image";
 
 const IndexPage = () => {
   return (
     <main>
-      <Stack direction="row">
-        <GithubStats />
+      <Stack direction="row" spacing={2}>
+        <ContentBox props={{ p: 0 }}>
+          <StaticImage alt="my photo" src="../images/myphoto.png" />
+        </ContentBox>
         <Intro />
       </Stack>
     </main>

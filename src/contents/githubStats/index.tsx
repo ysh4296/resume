@@ -1,6 +1,6 @@
-import { Box } from "@mui/material";
+import ContentBox from "@components/ContentBox";
 
 const githubStats = () => {
-  return <Box>githubStats</Box>;
+  return <ContentBox>githubStats</ContentBox>;
 };
 export default githubStats;

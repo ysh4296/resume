@@ -1,11 +1,14 @@
-import Typography from "@mui/material/Typography";
+import ContentBox from "@components/ContentBox";
 import Description from "./Description";
+import Title from "./Title";
 
 const Intro = () => {
   return (
     <>
-      <Typography variant="h3">안녕하세요 개발자 유승훈입니다.</Typography>
-      <Description />
+      <ContentBox>
+        <Title />
+        <Description />
+      </ContentBox>
     </>
   );
 };
