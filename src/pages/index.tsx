@@ -3,7 +3,6 @@ import Intro from "@contents/intro";
 import MainNavigation from "@contents/navigation/mainNavigation";
 import PostList from "@contents/post/PostList";
 import { Stack } from "@mui/material";
-import { StaticQuery, graphql } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 
 const IndexPage = () => {
@@ -25,30 +24,7 @@ const IndexPage = () => {
         </ContentBox>
         <Intro />
       </Stack>
-      <StaticQuery
-        query={graphql`
-  query GetAllPosts {
-    sanity {
-      allPost {
-        title
-        description
-        slug {
-          current
-        }
-        startDate
-        endDate
-        image {
-          asset {
-            url
-          }
-        }
-        content
-      }
-    }
-  }
-`}
-        render={(data) => <PostList data={data} />}
-      />
+      <PostList />
     </main>
   );
 };
