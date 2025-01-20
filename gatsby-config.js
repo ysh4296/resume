@@ -1,6 +1,8 @@
 require("dotenv").config({
-  path: ".env",
+  path: `.env.${process.env.NODE_ENV}`,
 });
+
+console.log("API : ", process.env.SANITY_API_URL);
 
 /**
  * @type {import('gatsby').GatsbyConfig}
@@ -16,7 +18,6 @@ module.exports = {
   },
   plugins: [
     "gatsby-plugin-typescript",
-    "gatsby-plugin-material-ui",
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
