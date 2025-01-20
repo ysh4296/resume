@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material";
+import { Link, Stack } from "@mui/material";
 
 /**
  * @todo
@@ -14,15 +14,17 @@ const MainNavigation = () => {
         top: 0,
         zIndex: 1000,
         backgroundColor: "background.paper",
+        height: "24px",
         padding: "8px 16px",
         borderBottom: "1px solid",
         borderColor: "divider",
       }}
     >
       <nav>
-        <a href="#section1">Section 1</a>
-        <a href="#section2">Section 2</a>
-        <a href="#section3">Section 3</a>
+        <Link href="#intro">Intro</Link>
+        <Link href="#workExperience">Work Experience</Link>
+        <Link href="#skills">Skills</Link>
+        <Link href="#portfolio">Portfolio</Link>
       </nav>
     </Stack>
   );
