@@ -35,7 +35,8 @@ const IndexPage = () => {
         slug {
           current
         }
-        publishedAt
+        startDate
+        endDate
         image {
           asset {
             url

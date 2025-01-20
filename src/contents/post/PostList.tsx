@@ -10,7 +10,9 @@ const PostList = ({ data }) => {
         <article key={post.slug.current}>
           <h2>{post.title}</h2>
           <h2>{post.description}</h2>
-          <p>Published on: {new Date(post.publishedAt).toLocaleDateString()}</p>
+          <p>
+            {post.startDate} ~ {post.endDate}
+          </p>
           {post.image && <img src={post.image.asset.url} alt={post.title} />}
           <Markdown>{post.content}</Markdown>
           {/* <PortableText value={post.bodyRaw} /> */}
