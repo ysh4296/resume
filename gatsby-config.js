@@ -17,6 +17,7 @@ module.exports = {
     siteUrl: "https://gatsby-template.vercel.app/",
   },
   plugins: [
+    "gatsby-theme-material-ui",
     "gatsby-plugin-typescript",
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
