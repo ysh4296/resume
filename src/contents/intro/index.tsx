@@ -5,7 +5,7 @@ import Title from "./Title";
 const Intro = () => {
   return (
     <>
-      <ContentBox>
+      <ContentBox props={{ overflow: "auto", height: "100%" }}>
         <Title />
         <Description />
       </ContentBox>
