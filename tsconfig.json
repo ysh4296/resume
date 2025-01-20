@@ -10,5 +10,6 @@
       "@assets/*": ["assets/*"],
       "@contents/*": ["contents/*"]
     }
-  }
+  },
+  "include": ["./src/**/*"]
 }

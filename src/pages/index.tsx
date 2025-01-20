@@ -2,8 +2,9 @@ import AnchorDiv from "@components/AnchorDiv";
 import ContentBox from "@components/ContentBox";
 import Title from "@components/Title";
 import Intro from "@contents/intro";
+import JobList from "@contents/jobs/JobList";
 import MainNavigation from "@contents/navigation/mainNavigation";
-import PortfolioList from "@contents/post/PortfolioList";
+import PortfolioList from "@contents/portfolio/PortfolioList";
 import { Stack } from "@mui/material";
 import { StaticImage } from "gatsby-plugin-image";
 
@@ -31,6 +32,7 @@ const IndexPage = () => {
       </AnchorDiv>
       <AnchorDiv id="workExperience">
         <Title>Work Experience</Title>
+        <JobList />
       </AnchorDiv>
 
       <AnchorDiv id="skills">

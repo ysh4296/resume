@@ -5,7 +5,7 @@ import { graphql, useStaticQuery } from "gatsby";
 // import Markdown from "react-markdown";
 
 const PortfolioList = () => {
-  const data = useStaticQuery(graphql`
+  const data = useStaticQuery<Queries.GetAllPostsQuery>(graphql`
   query GetAllPosts {
     sanity {
       allPost {
@@ -25,7 +25,6 @@ const PortfolioList = () => {
     }
   }
 `);
-  const posts = data.sanity.allPost;
 
   /**
    * @todo add global context to make following features
@@ -35,7 +34,7 @@ const PortfolioList = () => {
 
   return (
     <>
-      {posts.map((post) => (
+      {data.sanity.allPost.map((post) => (
         <article key={post.slug.current}>
           <ContentBox>
             <Header>{post.title}</Header>

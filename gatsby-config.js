@@ -16,6 +16,7 @@ module.exports = {
     title: "Gatsby + Vercel",
     siteUrl: "https://gatsby-template.vercel.app/",
   },
+  graphqlTypegen: true,
   plugins: [
     "gatsby-theme-material-ui",
     "gatsby-plugin-typescript",
@@ -28,6 +29,12 @@ module.exports = {
         typeName: "SANITY",
         fieldName: "sanity",
         url: process.env.SANITY_API_URL, // 환경 변수로 URL 로드
+      },
+    },
+    {
+      resolve: "gatsby-plugin-typegen",
+      options: {
+        outputPath: "src/types/gatsby-types.d.ts",
       },
     },
   ],
