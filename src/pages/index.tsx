@@ -1,13 +1,15 @@
 import ContentBox from "@components/ContentBox";
 import Intro from "@contents/intro";
 import MainNavigation from "@contents/navigation/mainNavigation";
+import PostList from "@contents/post/PostList";
 import { Stack } from "@mui/material";
+import { StaticQuery, graphql } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 
 const IndexPage = () => {
   return (
     <main>
-      <MainNavigation/>
+      <MainNavigation />
       <Stack
         direction="row"
         spacing={2}
@@ -23,6 +25,29 @@ const IndexPage = () => {
         </ContentBox>
         <Intro />
       </Stack>
+      <StaticQuery
+        query={graphql`
+  query GetAllPosts {
+    sanity {
+      allPost {
+        title
+        description
+        slug {
+          current
+        }
+        publishedAt
+        image {
+          asset {
+            url
+          }
+        }
+        content
+      }
+    }
+  }
+`}
+        render={(data) => <PostList data={data} />}
+      />
     </main>
   );
 };
