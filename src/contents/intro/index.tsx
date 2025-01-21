@@ -22,7 +22,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     borderRadius: "8px",
     boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // 부드러운 그림자
     backgroundColor: "#fff", // 배경색 흰색
-    maxWidth: "800px", // 최대 가로 너비
+    // maxWidth: "800px", // 최대 가로 너비
     height: "auto", // 높이는 내용에 따라 동적으로 설정
     overflow: "auto", // 내부 스크롤 허용
     border: "1px solid #ddd", // 외곽 테두리

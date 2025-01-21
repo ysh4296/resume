@@ -15,10 +15,12 @@ const MainNavigation = () => {
         top: 0,
         zIndex: 1000,
         backgroundColor: grey[200],
-        height: "40px",
+        // height: "40px",
         padding: "8px 16px",
         borderBottom: "1px solid",
         borderColor: "divider",
+        overflow: "auto",
+        textWrap: "nowrap",
       }}
     >
       <Stack direction="row" gap={4}>
