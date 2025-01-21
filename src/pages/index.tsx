@@ -14,15 +14,13 @@ const IndexPage = () => {
       <MainNavigation />
       <AnchorDiv id="intro">
         <Title>Intro</Title>
-        <Stack
-          direction="row"
-          spacing={2}
-          alignItems={"center"}
-          justifyContent={"center"}
-        >
+        <Stack spacing={2} alignItems={"center"} justifyContent={"center"}>
           <ContentBox props={{ p: 0 }}>
             <StaticImage
-              height={400}
+              style={{
+                width: "300px",
+                objectFit: "cover", // 비율 유지
+              }}
               alt="my photo"
               src="../images/myphoto.png"
             />
@@ -30,6 +28,7 @@ const IndexPage = () => {
           <Intro />
         </Stack>
       </AnchorDiv>
+
       <AnchorDiv id="workExperience">
         <Title>Work Experience</Title>
         <JobList />
