@@ -66,7 +66,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     display: "flex",
     flexDirection: "column",
     gap: "16px", // 각 카드 간격
-    padding: "16px",
+    paddingTop: "16px",
   },
   card: {
     display: "flex",
@@ -78,7 +78,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     backgroundColor: "#fff",
     boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
     transition: "transform 0.2s, box-shadow 0.2s",
-    cursor: "pointer",
+    // cursor: "pointer",
   },
   imageWrapper: {
     flex: "0 0 200px", // 이미지 고정 너비

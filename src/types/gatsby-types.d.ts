@@ -4784,4 +4784,21 @@ declare namespace GatsbyTypes {
       }>;
     };
   };
+
+  type GetAllPostsQueryVariables = Exact<{ [key: string]: never }>;
+
+  type GetAllPostsQuery = {
+    readonly sanity: {
+      readonly allPost: ReadonlyArray<{
+        readonly title: string | null;
+        readonly description: string | null;
+        readonly startDate: string | null;
+        readonly endDate: string | null;
+        readonly slug: { readonly current: string | null } | null;
+        readonly image: {
+          readonly asset: { readonly url: string | null } | null;
+        } | null;
+      }>;
+    };
+  };
 }

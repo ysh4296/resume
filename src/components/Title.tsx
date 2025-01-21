@@ -1,7 +1,26 @@
 import { Typography } from "@mui/material";
 
 const Title = ({ children }) => {
-  return <Typography variant="h2">{children}</Typography>;
+  return (
+    <Typography
+      variant="h2"
+      sx={{
+        color: "grey.800", // 회색
+        fontWeight: "bold", // 굵은 텍스트
+        textAlign: "center", // 가운데 정렬
+        padding: "24px 0", // 상하 여백
+        lineHeight: 1.3, // 줄 간격
+        "@media (max-width: 600px)": {
+          fontSize: "2rem", // 모바일에서는 작은 크기
+        },
+        "@media (min-width: 601px)": {
+          fontSize: "2.5rem", // 데스크톱에서는 기본 크기
+        },
+      }}
+    >
+      {children}
+    </Typography>
+  );
 };
 
 export default Title;
