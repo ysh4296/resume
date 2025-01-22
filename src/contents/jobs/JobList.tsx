@@ -1,8 +1,8 @@
-import { usePortfolioData } from "@hooks/jobs";
+import { useJobData } from "@hooks/useJobData";
 import JobItem from "./JobItem";
 
 const JobList = () => {
-  const jobs = usePortfolioData();
+  const jobs = useJobData();
 
   return (
     <>

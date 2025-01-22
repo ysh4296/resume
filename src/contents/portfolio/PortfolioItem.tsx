@@ -1,8 +1,5 @@
-import SkillsSection from "@contents/skills/skillList";
-import CloseIcon from "@mui/icons-material/Close";
-import { Box, Drawer, IconButton, Typography } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
-import Markdown from "react-markdown";
+import PortfolioDetail from "./PortfolioDetail";
 
 interface PortfolioItemProps {
   portfolio: Queries.GetAllPostsQuery["sanity"]["allPost"][number];
@@ -77,41 +74,11 @@ const PortfolioItem = ({ portfolio }: PortfolioItemProps) => {
         </div>
       </div>
 
-      {/* Drawer */}
-      <Drawer
-        anchor="right"
-        open={isDrawerOpen}
+      <PortfolioDetail
+        isOpen={isDrawerOpen}
         onClose={() => toggleDrawer(false)}
-        sx={{
-          "& .MuiDrawer-paper": {
-            width: "80vw", // 화면 너비의 80%로 설정
-            padding: "16px",
-          },
-        }}
-      >
-        {/* Drawer Header */}
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "16px",
-          }}
-        >
-          <Typography variant="h6">{portfolio.title}</Typography>
-          <IconButton onClick={() => toggleDrawer(false)}>
-            <CloseIcon />
-          </IconButton>
-        </Box>
-
-        <Typography variant="body2">{portfolio.description}</Typography>
-
-        <Typography variant="body2">skills</Typography>
-
-        <SkillsSection skills={portfolio.skills} />
-        {/* Drawer Content */}
-        <Markdown>{portfolio.content || "세부 정보가 없습니다."}</Markdown>
-      </Drawer>
+        portfolio={portfolio}
+      />
     </>
   );
 };

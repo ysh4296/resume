@@ -6,11 +6,11 @@ import JobList from "@contents/jobs/JobList";
 import MainNavigation from "@contents/navigation/mainNavigation";
 import PortfolioList from "@contents/portfolio/PortfolioList";
 import SkillsSection from "@contents/skills/skillList";
-import { usePortfolioData } from "@hooks/portfolio";
+import { useFilteredPortfolios } from "@hooks/useFilteredPortfolios";
+import { useMergedSkills } from "@hooks/useMergedSkills";
+import { usePortfolioData } from "@hooks/usePortfolioData";
 import { Box, Stack } from "@mui/material";
 import { useSelectedSkillsStore } from "@store/select";
-import { filterPortfoliosBySkills } from "@utils/filter";
-import { mergeSkillsData } from "@utils/skills";
 import { StaticImage } from "gatsby-plugin-image";
 
 const IndexPage = () => {
@@ -20,11 +20,8 @@ const IndexPage = () => {
     (state) => state.selectedSkills,
   );
 
-  const skills = mergeSkillsData(portfolios);
-  const filteredPortfolios = filterPortfoliosBySkills(
-    portfolios,
-    selectedSkills,
-  );
+  const skills = useMergedSkills(portfolios);
+  const filteredPortfolios = useFilteredPortfolios(portfolios, selectedSkills);
 
   return (
     <main>

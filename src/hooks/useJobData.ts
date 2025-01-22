@@ -2,7 +2,7 @@ import { graphql } from "gatsby";
 
 import { useStaticQuery } from "gatsby";
 
-export const usePortfolioData = () => {
+export const useJobData = () => {
   const data = useStaticQuery<Queries.GetAllJobsQuery>(graphql`
     query GetAllJobs {
   allSanityJob {
