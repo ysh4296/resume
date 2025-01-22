@@ -18,7 +18,7 @@ export default Intro;
 const styles: { [key: string]: React.CSSProperties } = {
   contentBox: {
     padding: "16px",
-    margin: "16px auto",
+    margin: "16px",
     borderRadius: "8px",
     boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // 부드러운 그림자
     backgroundColor: "#fff", // 배경색 흰색

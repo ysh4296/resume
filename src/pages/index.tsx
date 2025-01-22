@@ -1,6 +1,6 @@
 import AnchorDiv from "@components/AnchorDiv";
-import ContentBox from "@components/ContentBox";
 import Title from "@components/Title";
+import Contact from "@contents/contact";
 import Intro from "@contents/intro";
 import JobList from "@contents/jobs/JobList";
 import MainNavigation from "@contents/navigation/mainNavigation";
@@ -11,7 +11,6 @@ import { useMergedSkills } from "@hooks/useMergedSkills";
 import { usePortfolioData } from "@hooks/usePortfolioData";
 import { Box, Stack } from "@mui/material";
 import { useSelectedSkillsStore } from "@store/select";
-import { StaticImage } from "gatsby-plugin-image";
 
 const IndexPage = () => {
   const portfolios = usePortfolioData();
@@ -28,18 +27,16 @@ const IndexPage = () => {
       <MainNavigation />
       <AnchorDiv id="intro">
         <Title>Intro</Title>
-        <Stack spacing={2} alignItems={"center"} justifyContent={"center"}>
-          <ContentBox props={{ p: 0 }}>
-            <StaticImage
-              style={{
-                width: "300px",
-                objectFit: "cover", // 비율 유지
-              }}
-              alt="my photo"
-              src="../images/myphoto.png"
-            />
-          </ContentBox>
+        <Stack
+          spacing={2}
+          alignItems={"center"}
+          justifyContent={"center"}
+          sx={{
+            flexDirection: { xs: "column", sm: "row" }, // 모바일에서는 세로, 데스크탑에서는 가로 정렬
+          }}
+        >
           <Intro />
+          <Contact />
         </Stack>
       </AnchorDiv>
 
