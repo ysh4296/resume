@@ -8,7 +8,7 @@ export const useFilteredPortfolios = (portfolios, selectedSkills) => {
     }
 
     const filteredPortfolios = portfolios.filter((portfolio) =>
-      selectedSkills.every((selectedSkill) =>
+      selectedSkills.some((selectedSkill) =>
         portfolio.skills?.some((skillCategory) =>
           skillCategory.skill?.includes(selectedSkill),
         ),
