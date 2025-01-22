@@ -8,13 +8,23 @@ import PortfolioList from "@contents/portfolio/PortfolioList";
 import SkillsSection from "@contents/skills/skillList";
 import { usePortfolioData } from "@hooks/portfolio";
 import { Stack } from "@mui/material";
+import { useSelectedSkillsStore } from "@store/select";
+import { filterPortfoliosBySkills } from "@utils/filter";
 import { mergeSkillsData } from "@utils/skills";
 import { StaticImage } from "gatsby-plugin-image";
 
 const IndexPage = () => {
   const portfolios = usePortfolioData();
 
+  const selectedSkills = useSelectedSkillsStore(
+    (state) => state.selectedSkills,
+  );
+
   const skills = mergeSkillsData(portfolios);
+  const filteredPortfolios = filterPortfoliosBySkills(
+    portfolios,
+    selectedSkills,
+  );
 
   return (
     <main>
@@ -48,7 +58,7 @@ const IndexPage = () => {
 
       <AnchorDiv id="portfolio">
         <Title>Portfolio</Title>
-        <PortfolioList portfolios={portfolios} />
+        <PortfolioList portfolios={filteredPortfolios} />
       </AnchorDiv>
     </main>
   );

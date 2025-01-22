@@ -8,7 +8,7 @@ import Markdown from "react-markdown";
 interface JobItemProps {
   name: string;
   description: string;
-  image: IGatsbyImageData | null; // Gatsby Image 데이터 타입
+  image: IGatsbyImageData | null;
   startDate: string;
   endDate: string;
   content: string;
