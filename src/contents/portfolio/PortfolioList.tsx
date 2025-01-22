@@ -1,4 +1,6 @@
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import { Box, Chip, Typography } from "@mui/material";
+import { grey } from "@mui/material/colors";
 import { useSelectedSkillsStore } from "@store/select";
 import PortfolioItem from "./PortfolioItem";
 
@@ -10,16 +12,40 @@ const PortfolioList = ({ portfolios }: PortfolioListProps) => {
   const selectedSkills = useSelectedSkillsStore(
     (state) => state.selectedSkills,
   );
+  const resetSkill = useSelectedSkillsStore((state) => state.resetSkill);
 
   return (
     <div style={styles.listContainer}>
       {/* 선택된 스킬 표시 */}
       <div style={styles.selectedSkillsContainer}>
-        {selectedSkills && selectedSkills.length > 0 ? (
+        {
           <>
-            <Box sx={{ textAlign: "center", color: "#555", marginX: "20px" }}>
-              <strong>선택된 Skill: </strong>
+            <Box
+              sx={{
+                textAlign: "center",
+                color: "#555",
+                marginX: "20px",
+                textWrap: "nowrap",
+                overflowY: "visible",
+              }}
+            >
+              <strong>선택된 Skill</strong>
             </Box>
+
+            <Chip
+              icon={<RestartAltIcon style={{ color: "#fff" }} />}
+              label={"reset"}
+              sx={{
+                backgroundColor: grey[600],
+                color: "#fff",
+                fontWeight: "bold",
+                marginRight: "8px",
+                cursor: "pointer",
+                alignContent: "center",
+                justifyContent: "center",
+              }}
+              onClick={resetSkill}
+            />
             <div style={styles.chipContainer}>
               {selectedSkills.map((selectedSkill) => (
                 <Chip
@@ -36,11 +62,7 @@ const PortfolioList = ({ portfolios }: PortfolioListProps) => {
               ))}
             </div>
           </>
-        ) : (
-          <Box sx={{ textAlign: "center", color: "#555", marginX: "20px" }}>
-            <strong>Skill을 선택해주세요</strong>
-          </Box>
-        )}
+        }
       </div>
       {/* 포트폴리오 리스트 */}
       {portfolios.length > 0 ? (
@@ -89,15 +111,15 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   chipContainer: {
     display: "flex",
-    flexWrap: "wrap", // 가로로 나열하고 넘치면 다음 줄로
+    flexWrap: "nowrap", // 가로로 나열하고 넘치면 다음 줄로
     gap: "8px",
+    overflow: "auto",
   },
   fallbackContainer: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    // height: "800px", // 넉넉한 높이
     padding: "16px",
   },
 };

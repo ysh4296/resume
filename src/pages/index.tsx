@@ -74,6 +74,7 @@ const IndexPage = () => {
             <strong>Skill을 클릭하여 포트폴리오를 필터링할 수 있습니다.</strong>
           </Box>
           <Button
+            endIcon={isSkillsSectionOpen ? <ExpandLess /> : <ExpandMore />}
             variant="outlined"
             size="small"
             onClick={toggleSkillsSection}
@@ -81,18 +82,14 @@ const IndexPage = () => {
               textTransform: "none",
               color: "#757575",
               borderColor: "#bdbdbd",
+              minWidth: "none",
               "&:hover": {
                 backgroundColor: "#f5f5f5",
                 borderColor: "#9e9e9e",
               },
             }}
           >
-            {isSkillsSectionOpen ? "Skills 숨기기" : "Skills 보기"}
-            {isSkillsSectionOpen ? (
-              <ExpandLess sx={{ marginLeft: "4px" }} />
-            ) : (
-              <ExpandMore sx={{ marginLeft: "4px" }} />
-            )}
+            Skills
           </Button>
         </Stack>
 
