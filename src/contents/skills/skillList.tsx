@@ -8,90 +8,87 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Typography,
 } from "@mui/material";
 
-const skillsData = [
-  {
-    category: "Frontend",
-    items: [
-      "React",
-      "React-native",
-      "Nextjs",
-      "Gatsby",
-      "Javascript(es6)",
-      "Typescript",
-    ],
-  },
-  {
-    category: "DevOps",
-    items: [
-      "github-actions",
-      "jenkins",
-      "vercel-deploy",
-      "github actions",
-      "k8s",
-    ],
-  },
-  {
-    category: "UI Libraries",
-    items: ["mui", "Chakra-Ui", "radix-ui", "storybook"],
-  },
-  {
-    category: "Tools",
-    items: ["jira", "figma", "slack", "v0", "cursor-ai", "gpt"],
-  },
-  {
-    category: "Testing",
-    items: ["jest", "vitest", "cypress"],
-  },
-  {
-    category: "Infra & Code Quality",
-    items: ["biome", "eslint/prettier", "husky/lint-staged"],
-  },
-  {
-    category: "Other",
-    items: ["graphql", "i18n", "search engine optimization", "webAssembly"],
-  },
-];
+// const skillsMockData = [
+//   {
+//     category: "Frontend",
+//     items: [
+//       "React",
+//       "React-native",
+//       "Nextjs",
+//       "Gatsby",
+//       "Javascript(es6)",
+//       "Typescript",
+//     ],
+//   },
+//   {
+//     category: "DevOps",
+//     items: [
+//       "github-actions",
+//       "jenkins",
+//       "vercel-deploy",
+//       "github actions",
+//       "k8s",
+//     ],
+//   },
+//   {
+//     category: "UI Libraries",
+//     items: ["mui", "Chakra-Ui", "radix-ui", "storybook"],
+//   },
+//   {
+//     category: "Tools",
+//     items: ["jira", "figma", "slack", "v0", "cursor-ai", "gpt"],
+//   },
+//   {
+//     category: "Testing",
+//     items: ["jest", "vitest", "cypress"],
+//   },
+//   {
+//     category: "Infra & Code Quality",
+//     items: ["biome", "eslint/prettier", "husky/lint-staged"],
+//   },
+//   {
+//     category: "Other",
+//     items: ["graphql", "i18n", "search engine optimization", "webAssembly"],
+//   },
+// ];
 
-const SkillsSection = () => {
+interface SkillSectionProps {
+  skills: Queries.GetAllPostsQuery["sanity"]["allPost"][number]["skills"];
+}
+
+const SkillsSection = ({ skills }: SkillSectionProps) => {
   const handleClick = (skill) => {
     alert(`You clicked on ${skill}`);
   };
 
   return (
     <Box sx={{ padding: "16px", margin: "0 auto" }}>
-      <Typography
-        variant="h5"
-        sx={{ marginBottom: "16px", fontWeight: "bold", textAlign: "center" }}
-      >
-        Skills
-      </Typography>
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
             <TableRow>
               <TableCell sx={{ fontWeight: "bold", fontSize: "1rem" }}>
-                Category
+                카테고리
               </TableCell>
               <TableCell sx={{ fontWeight: "bold", fontSize: "1rem" }}>
-                Skills
+                항목
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {skillsData.map((skill) => (
-              <TableRow key={skill.category}>
+            {skills.map((item) => (
+              <TableRow key={item.category}>
                 <TableCell sx={{ fontWeight: "bold", color: "#333" }}>
-                  {skill.category}
+                  {item.category}
                 </TableCell>
                 <TableCell>
-                  {skill.items.map((item) => (
+                  {item.skill.map((s) => (
                     <Chip
-                      key={item}
-                      label={item}
-                      onClick={() => handleClick(item)}
+                      key={s}
+                      label={s}
+                      onClick={() => handleClick(s)}
                       sx={{ margin: "4px" }}
                     />
                   ))}

@@ -6,10 +6,16 @@ import JobList from "@contents/jobs/JobList";
 import MainNavigation from "@contents/navigation/mainNavigation";
 import PortfolioList from "@contents/portfolio/PortfolioList";
 import SkillsSection from "@contents/skills/skillList";
+import { usePortfolioData } from "@hooks/portfolio";
 import { Stack } from "@mui/material";
+import { mergeSkillsData } from "@utils/skills";
 import { StaticImage } from "gatsby-plugin-image";
 
 const IndexPage = () => {
+  const portfolios = usePortfolioData();
+
+  const skills = mergeSkillsData(portfolios);
+
   return (
     <main>
       <MainNavigation />
@@ -37,12 +43,12 @@ const IndexPage = () => {
 
       <AnchorDiv id="skills">
         <Title>Skills</Title>
-        <SkillsSection />
+        <SkillsSection skills={skills} />
       </AnchorDiv>
 
       <AnchorDiv id="portfolio">
         <Title>Portfolio</Title>
-        <PortfolioList />
+        <PortfolioList portfolios={portfolios} />
       </AnchorDiv>
     </main>
   );

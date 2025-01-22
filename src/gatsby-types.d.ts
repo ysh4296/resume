@@ -1651,6 +1651,7 @@ declare namespace Queries {
     _id: InputMaybe<StringQueryOperatorInput>;
     _key: InputMaybe<StringQueryOperatorInput>;
     _rawImage: InputMaybe<JSONQueryOperatorInput>;
+    _rawSkills: InputMaybe<JSONQueryOperatorInput>;
     _rawSlug: InputMaybe<JSONQueryOperatorInput>;
     _rev: InputMaybe<StringQueryOperatorInput>;
     _type: InputMaybe<StringQueryOperatorInput>;
@@ -1663,6 +1664,7 @@ declare namespace Queries {
     image: InputMaybe<SanityImageFilterInput>;
     internal: InputMaybe<InternalFilterInput>;
     parent: InputMaybe<NodeFilterInput>;
+    skills: InputMaybe<SanitySkillCategoryFilterListInput>;
     slug: InputMaybe<SanitySlugFilterInput>;
     startDate: InputMaybe<StringQueryOperatorInput>;
     title: InputMaybe<StringQueryOperatorInput>;
@@ -2229,6 +2231,7 @@ declare namespace Queries {
     /** Enter the year and month (e.g., 2025-01) */
     readonly endDate: Maybe<Scalars["String"]>;
     readonly image: Maybe<SANITY_Image>;
+    readonly skills: Maybe<ReadonlyArray<Maybe<SANITY_SkillCategory>>>;
     readonly slug: Maybe<SANITY_Slug>;
     /** Enter the year and month (e.g., 2025-01) */
     readonly startDate: Maybe<Scalars["String"]>;
@@ -2633,6 +2636,25 @@ declare namespace Queries {
     readonly is_draft: InputMaybe<Scalars["Boolean"]>;
     /** All documents referencing the given document ID. */
     readonly references: InputMaybe<Scalars["ID"]>;
+  };
+
+  type SANITY_SkillCategory = {
+    readonly _key: Maybe<Scalars["String"]>;
+    readonly _type: Maybe<Scalars["String"]>;
+    readonly category: Maybe<Scalars["String"]>;
+    readonly skill: Maybe<ReadonlyArray<Maybe<Scalars["String"]>>>;
+  };
+
+  type SANITY_SkillCategoryFilter = {
+    readonly _key: InputMaybe<SANITY_StringFilter>;
+    readonly _type: InputMaybe<SANITY_StringFilter>;
+    readonly category: InputMaybe<SANITY_StringFilter>;
+  };
+
+  type SANITY_SkillCategorySorting = {
+    readonly _key: InputMaybe<SANITY_SortOrder>;
+    readonly _type: InputMaybe<SANITY_SortOrder>;
+    readonly category: InputMaybe<SANITY_SortOrder>;
   };
 
   type SANITY_Slug = {
@@ -3861,6 +3883,7 @@ declare namespace Queries {
       readonly _id: Maybe<Scalars["String"]>;
       readonly _key: Maybe<Scalars["String"]>;
       readonly _rawImage: Maybe<Scalars["JSON"]>;
+      readonly _rawSkills: Maybe<Scalars["JSON"]>;
       readonly _rawSlug: Maybe<Scalars["JSON"]>;
       readonly _rev: Maybe<Scalars["String"]>;
       readonly _type: Maybe<Scalars["String"]>;
@@ -3873,6 +3896,7 @@ declare namespace Queries {
       readonly image: Maybe<SanityImage>;
       readonly internal: Internal;
       readonly parent: Maybe<Node>;
+      readonly skills: Maybe<ReadonlyArray<Maybe<SanitySkillCategory>>>;
       readonly slug: Maybe<SanitySlug>;
       readonly startDate: Maybe<Scalars["String"]>;
       readonly title: Maybe<Scalars["String"]>;
@@ -3886,6 +3910,10 @@ declare namespace Queries {
   };
 
   type SanityPost__rawImageArgs = {
+    resolveReferences: InputMaybe<SanityResolveReferencesConfiguration>;
+  };
+
+  type SanityPost__rawSkillsArgs = {
     resolveReferences: InputMaybe<SanityResolveReferencesConfiguration>;
   };
 
@@ -3945,6 +3973,7 @@ declare namespace Queries {
     readonly _id: InputMaybe<FieldSelectorEnum>;
     readonly _key: InputMaybe<FieldSelectorEnum>;
     readonly _rawImage: InputMaybe<FieldSelectorEnum>;
+    readonly _rawSkills: InputMaybe<FieldSelectorEnum>;
     readonly _rawSlug: InputMaybe<FieldSelectorEnum>;
     readonly _rev: InputMaybe<FieldSelectorEnum>;
     readonly _type: InputMaybe<FieldSelectorEnum>;
@@ -3957,6 +3986,7 @@ declare namespace Queries {
     readonly image: InputMaybe<SanityImageFieldSelector>;
     readonly internal: InputMaybe<InternalFieldSelector>;
     readonly parent: InputMaybe<NodeFieldSelector>;
+    readonly skills: InputMaybe<SanitySkillCategoryFieldSelector>;
     readonly slug: InputMaybe<SanitySlugFieldSelector>;
     readonly startDate: InputMaybe<FieldSelectorEnum>;
     readonly title: InputMaybe<FieldSelectorEnum>;
@@ -3967,6 +3997,7 @@ declare namespace Queries {
     readonly _id: InputMaybe<StringQueryOperatorInput>;
     readonly _key: InputMaybe<StringQueryOperatorInput>;
     readonly _rawImage: InputMaybe<JSONQueryOperatorInput>;
+    readonly _rawSkills: InputMaybe<JSONQueryOperatorInput>;
     readonly _rawSlug: InputMaybe<JSONQueryOperatorInput>;
     readonly _rev: InputMaybe<StringQueryOperatorInput>;
     readonly _type: InputMaybe<StringQueryOperatorInput>;
@@ -3979,6 +4010,7 @@ declare namespace Queries {
     readonly image: InputMaybe<SanityImageFilterInput>;
     readonly internal: InputMaybe<InternalFilterInput>;
     readonly parent: InputMaybe<NodeFilterInput>;
+    readonly skills: InputMaybe<SanitySkillCategoryFilterListInput>;
     readonly slug: InputMaybe<SanitySlugFilterInput>;
     readonly startDate: InputMaybe<StringQueryOperatorInput>;
     readonly title: InputMaybe<StringQueryOperatorInput>;
@@ -4025,6 +4057,7 @@ declare namespace Queries {
     readonly _id: InputMaybe<SortOrderEnum>;
     readonly _key: InputMaybe<SortOrderEnum>;
     readonly _rawImage: InputMaybe<SortOrderEnum>;
+    readonly _rawSkills: InputMaybe<SortOrderEnum>;
     readonly _rawSlug: InputMaybe<SortOrderEnum>;
     readonly _rev: InputMaybe<SortOrderEnum>;
     readonly _type: InputMaybe<SortOrderEnum>;
@@ -4037,6 +4070,7 @@ declare namespace Queries {
     readonly image: InputMaybe<SanityImageSortInput>;
     readonly internal: InputMaybe<InternalSortInput>;
     readonly parent: InputMaybe<NodeSortInput>;
+    readonly skills: InputMaybe<SanitySkillCategorySortInput>;
     readonly slug: InputMaybe<SanitySlugSortInput>;
     readonly startDate: InputMaybe<SortOrderEnum>;
     readonly title: InputMaybe<SortOrderEnum>;
@@ -4045,6 +4079,38 @@ declare namespace Queries {
   type SanityResolveReferencesConfiguration = {
     /** Max depth to resolve references to */
     readonly maxDepth: Scalars["Int"];
+  };
+
+  type SanitySkillCategory = {
+    readonly _key: Maybe<Scalars["String"]>;
+    readonly _type: Maybe<Scalars["String"]>;
+    readonly category: Maybe<Scalars["String"]>;
+    readonly skill: Maybe<ReadonlyArray<Maybe<Scalars["String"]>>>;
+  };
+
+  type SanitySkillCategoryFieldSelector = {
+    readonly _key: InputMaybe<FieldSelectorEnum>;
+    readonly _type: InputMaybe<FieldSelectorEnum>;
+    readonly category: InputMaybe<FieldSelectorEnum>;
+    readonly skill: InputMaybe<FieldSelectorEnum>;
+  };
+
+  type SanitySkillCategoryFilterInput = {
+    readonly _key: InputMaybe<StringQueryOperatorInput>;
+    readonly _type: InputMaybe<StringQueryOperatorInput>;
+    readonly category: InputMaybe<StringQueryOperatorInput>;
+    readonly skill: InputMaybe<StringQueryOperatorInput>;
+  };
+
+  type SanitySkillCategoryFilterListInput = {
+    readonly elemMatch: InputMaybe<SanitySkillCategoryFilterInput>;
+  };
+
+  type SanitySkillCategorySortInput = {
+    readonly _key: InputMaybe<SortOrderEnum>;
+    readonly _type: InputMaybe<SortOrderEnum>;
+    readonly category: InputMaybe<SortOrderEnum>;
+    readonly skill: InputMaybe<SortOrderEnum>;
   };
 
   type SanitySlug = {
@@ -5253,6 +5319,10 @@ declare namespace Queries {
         readonly image: {
           readonly asset: { readonly url: string | null } | null;
         } | null;
+        readonly skills: ReadonlyArray<{
+          readonly category: string | null;
+          readonly skill: ReadonlyArray<string | null> | null;
+        } | null> | null;
       }>;
     };
   };

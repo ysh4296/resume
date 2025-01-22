@@ -1,40 +1,14 @@
-// import Body from "@components/Body";
-// import ContentBox from "@components/ContentBox";
-// import Header from "@components/Header";
-import { graphql, useStaticQuery } from "gatsby";
-
-const PortfolioList = () => {
-  const data = useStaticQuery<any>(graphql`
-    query GetAllPosts {
-      sanity {
-        allPost {
-          title
-          description
-          slug {
-            current
-          }
-          startDate
-          endDate
-          image {
-            asset {
-              url
-            }
-          }
-        }
-      }
-    }
-  `);
-
+const PortfolioList = ({ portfolios }) => {
   return (
     <div style={styles.listContainer}>
-      {data.sanity.allPost.map((post) => (
-        <article key={post.slug.current} style={styles.card}>
+      {portfolios.map((portfolio) => (
+        <article key={portfolio.slug.current} style={styles.card}>
           {/* 이미지 */}
-          {post.image && (
+          {portfolio.image && (
             <div style={styles.imageWrapper}>
               <img
-                src={post.image.asset.url}
-                alt={post.title}
+                src={portfolio.image.asset.url}
+                alt={portfolio.title}
                 style={styles.image}
               />
             </div>
@@ -42,10 +16,10 @@ const PortfolioList = () => {
 
           {/* 콘텐츠 */}
           <div style={styles.content}>
-            <div style={styles.title}>{post.title}</div>
-            <div style={styles.description}>{post.description}</div>
+            <div style={styles.title}>{portfolio.title}</div>
+            <div style={styles.description}>{portfolio.description}</div>
             <div style={styles.date}>
-              {post.startDate} ~ {post.endDate}
+              {portfolio.startDate} ~ {portfolio.endDate}
             </div>
           </div>
         </article>
