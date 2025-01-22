@@ -36,7 +36,7 @@ const SkillsSection = ({ skills }: SkillSectionProps) => {
     <Box sx={{ padding: "16px", margin: "0 auto" }}>
       {/* 필터 기능 설명 */}
       <Box sx={{ marginBottom: "16px", textAlign: "center", color: "#555" }}>
-        <strong>skill 항목을 클릭하여 포트폴리오를 필터링하세요.</strong>
+        <strong>Skill을 클릭하여 포트폴리오를 필터링할 수 있습니다.</strong>
       </Box>
 
       <TableContainer component={Paper}>
