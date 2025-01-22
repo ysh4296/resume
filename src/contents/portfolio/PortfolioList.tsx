@@ -1,29 +1,58 @@
+import { Box, Chip, Typography } from "@mui/material";
+import { useSelectedSkillsStore } from "@store/select";
+import PortfolioItem from "./PortfolioItem";
+
 const PortfolioList = ({ portfolios }) => {
+  const selectedSkills = useSelectedSkillsStore(
+    (state) => state.selectedSkills,
+  );
+
   return (
     <div style={styles.listContainer}>
-      {portfolios.map((portfolio) => (
-        <article key={portfolio.slug.current} style={styles.card}>
-          {/* 이미지 */}
-          {portfolio.image && (
-            <div style={styles.imageWrapper}>
-              <img
-                src={portfolio.image.asset.url}
-                alt={portfolio.title}
-                style={styles.image}
-              />
+      {/* 선택된 스킬 표시 */}
+      <div style={styles.selectedSkillsContainer}>
+        {selectedSkills && selectedSkills.length > 0 ? (
+          <>
+            <Box sx={{ textAlign: "center", color: "#555", marginX: "20px" }}>
+              <strong>선택된 Skill: </strong>
+            </Box>
+            <div style={styles.chipContainer}>
+              {selectedSkills.map((selectedSkill) => (
+                <Chip
+                  key={selectedSkill}
+                  label={selectedSkill}
+                  sx={{
+                    backgroundColor: "#1976d2",
+                    color: "#fff",
+                    fontWeight: "bold",
+                    marginRight: "8px",
+                    cursor: "pointer",
+                  }}
+                />
+              ))}
             </div>
-          )}
-
-          {/* 콘텐츠 */}
-          <div style={styles.content}>
-            <div style={styles.title}>{portfolio.title}</div>
-            <div style={styles.description}>{portfolio.description}</div>
-            <div style={styles.date}>
-              {portfolio.startDate} ~ {portfolio.endDate}
-            </div>
-          </div>
-        </article>
-      ))}
+          </>
+        ) : (
+          <Box sx={{ textAlign: "center", color: "#555", marginX: "20px" }}>
+            <strong>Skill을 선택해주세요</strong>
+          </Box>
+        )}
+      </div>
+      {/* 포트폴리오 리스트 */}
+      {portfolios.length > 0 ? (
+        portfolios.map((portfolio) => (
+          <PortfolioItem key={portfolio.slug.current} portfolio={portfolio} />
+        ))
+      ) : (
+        <Box style={styles.fallbackContainer}>
+          <Typography variant="h6" color="textSecondary" align="center">
+            표시할 포트폴리오가 없습니다.
+          </Typography>
+          <Typography variant="body1" color="textSecondary" align="center">
+            스킬을 변경해주세요
+          </Typography>
+        </Box>
+      )}
     </div>
   );
 };
@@ -41,48 +70,30 @@ const styles: { [key: string]: React.CSSProperties } = {
     flexDirection: "column",
     gap: "16px", // 각 카드 간격
     paddingTop: "16px",
+    minHeight: "800px",
   },
-  card: {
+  selectedSkillsContainer: {
     display: "flex",
-    flexDirection: "row", // 이미지와 텍스트를 나란히 배치
-    alignItems: "flex-start",
-    border: "1px solid #ddd",
-    borderRadius: "8px",
-    overflow: "hidden",
-    backgroundColor: "#fff",
-    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-    transition: "transform 0.2s, box-shadow 0.2s",
-    // cursor: "pointer",
+    alignItems: "center",
+    marginBottom: "16px",
   },
-  imageWrapper: {
-    flex: "0 0 200px", // 이미지 고정 너비
-    height: "200px", // 이미지 고정 높이
-    overflow: "hidden",
-    backgroundColor: "#f0f0f0", // 빈 영역 배경색
-  },
-  image: {
-    width: "100%",
-    height: "100%",
-    objectFit: "cover", // 비율 유지하며 채우기
-  },
-  content: {
-    flex: "1",
-    padding: "16px",
-  },
-  title: {
-    margin: "0 0 8px",
-    fontSize: "1.5rem",
+  selectedSkillsLabel: {
     fontWeight: "bold",
+    fontSize: "1.2rem",
     color: "#333",
+    marginRight: "8px", // 텍스트와 Chip 간격
   },
-  description: {
-    fontSize: "1rem",
-    color: "#555",
-    marginBottom: "8px",
+  chipContainer: {
+    display: "flex",
+    flexWrap: "wrap", // 가로로 나열하고 넘치면 다음 줄로
+    gap: "8px",
   },
-  date: {
-    fontSize: "0.875rem",
-    color: "#777",
-    marginTop: "8px",
+  fallbackContainer: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    // height: "800px", // 넉넉한 높이
+    padding: "16px",
   },
 };
