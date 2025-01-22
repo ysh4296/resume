@@ -13,6 +13,7 @@ const PortfolioList = ({ portfolios }: PortfolioListProps) => {
     (state) => state.selectedSkills,
   );
   const resetSkill = useSelectedSkillsStore((state) => state.resetSkill);
+  const removeSkill = useSelectedSkillsStore((state) => state.removeSkill);
 
   return (
     <div style={styles.listContainer}>
@@ -29,7 +30,7 @@ const PortfolioList = ({ portfolios }: PortfolioListProps) => {
                 overflowY: "visible",
               }}
             >
-              <strong>선택된 Skill</strong>
+              <strong>선택된 필터</strong>
             </Box>
 
             <Chip
@@ -58,13 +59,13 @@ const PortfolioList = ({ portfolios }: PortfolioListProps) => {
                     marginRight: "8px",
                     cursor: "pointer",
                   }}
+                  onClick={() => removeSkill(selectedSkill)}
                 />
               ))}
             </div>
           </>
         }
       </div>
-      {/* 포트폴리오 리스트 */}
       {portfolios.length > 0 ? (
         portfolios.map((portfolio) => (
           <PortfolioItem key={portfolio.slug.current} portfolio={portfolio} />

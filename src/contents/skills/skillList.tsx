@@ -66,9 +66,6 @@ const SkillsSection = ({ skills, edit = false }: SkillSectionProps) => {
                           ? "#1976d2"
                           : "#e0e0e0",
                         color: selectedSkills.includes(s) ? "#fff" : "#000",
-                        fontWeight: selectedSkills.includes(s)
-                          ? "bold"
-                          : "normal",
                       }}
                     />
                   ))}
