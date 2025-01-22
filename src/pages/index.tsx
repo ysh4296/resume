@@ -7,7 +7,7 @@ import MainNavigation from "@contents/navigation/mainNavigation";
 import PortfolioList from "@contents/portfolio/PortfolioList";
 import SkillsSection from "@contents/skills/skillList";
 import { usePortfolioData } from "@hooks/portfolio";
-import { Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { useSelectedSkillsStore } from "@store/select";
 import { filterPortfoliosBySkills } from "@utils/filter";
 import { mergeSkillsData } from "@utils/skills";
@@ -53,7 +53,11 @@ const IndexPage = () => {
 
       <AnchorDiv id="skills">
         <Title>Skills</Title>
-        <SkillsSection skills={skills} />
+        {/* 필터 기능 설명 */}
+        <Box sx={{ marginBottom: "16px", textAlign: "center", color: "#555" }}>
+          <strong>Skill을 클릭하여 포트폴리오를 필터링할 수 있습니다.</strong>
+        </Box>
+        <SkillsSection skills={skills} edit />
       </AnchorDiv>
 
       <AnchorDiv id="portfolio">

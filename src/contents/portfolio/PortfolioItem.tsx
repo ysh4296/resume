@@ -1,7 +1,16 @@
+import SkillsSection from "@contents/skills/skillList";
+import CloseIcon from "@mui/icons-material/Close";
+import { Box, Drawer, IconButton, Typography } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
+import Markdown from "react-markdown";
 
-const PortfolioItem = ({ portfolio }) => {
+interface PortfolioItemProps {
+  portfolio: Queries.GetAllPostsQuery["sanity"]["allPost"][number];
+}
+
+const PortfolioItem = ({ portfolio }: PortfolioItemProps) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const itemRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -27,37 +36,83 @@ const PortfolioItem = ({ portfolio }) => {
     };
   }, []);
 
-  return (
-    <div
-      ref={itemRef}
-      style={{
-        ...styles.card,
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translateY(0)" : "translateY(20px)",
-        filter: isVisible ? "blur(0)" : "blur(5px)",
-        transition: "opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease",
-      }}
-    >
-      {/* 이미지 */}
-      {portfolio.image && (
-        <div style={styles.imageWrapper}>
-          <img
-            src={portfolio.image.asset.url}
-            alt={portfolio.title}
-            style={styles.image}
-          />
-        </div>
-      )}
+  const toggleDrawer = (open: boolean) => {
+    setIsDrawerOpen(open);
+  };
 
-      {/* 콘텐츠 */}
-      <div style={styles.content}>
-        <div style={styles.title}>{portfolio.title}</div>
-        <div style={styles.description}>{portfolio.description}</div>
-        <div style={styles.date}>
-          {portfolio.startDate} ~ {portfolio.endDate}
+  return (
+    <>
+      {/* Portfolio Item */}
+      <div
+        ref={itemRef}
+        style={{
+          ...styles.card,
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? "translateY(0)" : "translateY(20px)",
+          filter: isVisible ? "blur(0)" : "blur(5px)",
+          transition:
+            "opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease",
+          cursor: "pointer", // 클릭 가능하도록 커서 변경
+        }}
+        onClick={() => toggleDrawer(true)} // 클릭 시 Drawer 열기
+      >
+        {/* 이미지 */}
+        {portfolio.image && (
+          <div style={styles.imageWrapper}>
+            <img
+              src={portfolio.image.asset.url}
+              alt={portfolio.title}
+              style={styles.image}
+            />
+          </div>
+        )}
+
+        {/* 콘텐츠 */}
+        <div style={styles.content}>
+          <div style={styles.title}>{portfolio.title}</div>
+          <div style={styles.description}>{portfolio.description}</div>
+          <div style={styles.date}>
+            {portfolio.startDate} ~ {portfolio.endDate}
+          </div>
         </div>
       </div>
-    </div>
+
+      {/* Drawer */}
+      <Drawer
+        anchor="right"
+        open={isDrawerOpen}
+        onClose={() => toggleDrawer(false)}
+        sx={{
+          "& .MuiDrawer-paper": {
+            width: "80vw", // 화면 너비의 80%로 설정
+            padding: "16px",
+          },
+        }}
+      >
+        {/* Drawer Header */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: "16px",
+          }}
+        >
+          <Typography variant="h6">{portfolio.title}</Typography>
+          <IconButton onClick={() => toggleDrawer(false)}>
+            <CloseIcon />
+          </IconButton>
+        </Box>
+
+        <Typography variant="body2">{portfolio.description}</Typography>
+
+        <Typography variant="body2">skills</Typography>
+
+        <SkillsSection skills={portfolio.skills} />
+        {/* Drawer Content */}
+        <Markdown>{portfolio.content || "세부 정보가 없습니다."}</Markdown>
+      </Drawer>
+    </>
   );
 };
 

@@ -4860,6 +4860,7 @@ declare namespace GatsbyTypes {
         readonly description: string | null;
         readonly startDate: string | null;
         readonly endDate: string | null;
+        readonly content: string | null;
         readonly slug: { readonly current: string | null } | null;
         readonly image: {
           readonly asset: { readonly url: string | null } | null;

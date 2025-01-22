@@ -2,7 +2,11 @@ import { Box, Chip, Typography } from "@mui/material";
 import { useSelectedSkillsStore } from "@store/select";
 import PortfolioItem from "./PortfolioItem";
 
-const PortfolioList = ({ portfolios }) => {
+interface PortfolioListProps {
+  portfolios: Queries.GetAllPostsQuery["sanity"]["allPost"];
+}
+
+const PortfolioList = ({ portfolios }: PortfolioListProps) => {
   const selectedSkills = useSelectedSkillsStore(
     (state) => state.selectedSkills,
   );

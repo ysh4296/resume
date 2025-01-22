@@ -23,6 +23,7 @@ export const usePortfolioData = () => {
             category
             skill
           }
+          content
         }
       }
     }

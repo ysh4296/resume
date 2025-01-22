@@ -13,9 +13,10 @@ import { useSelectedSkillsStore } from "@store/select"; // zustand 저장소 가
 
 interface SkillSectionProps {
   skills: Queries.GetAllPostsQuery["sanity"]["allPost"][number]["skills"];
+  edit?: boolean;
 }
 
-const SkillsSection = ({ skills }: SkillSectionProps) => {
+const SkillsSection = ({ skills, edit = false }: SkillSectionProps) => {
   const selectedSkills = useSelectedSkillsStore(
     (state) => state.selectedSkills,
   ); // 현재 선택된 스킬 목록 가져오기
@@ -25,6 +26,7 @@ const SkillsSection = ({ skills }: SkillSectionProps) => {
 
   // Chip 클릭 핸들러: 클릭 시 스킬을 추가하거나 제거함
   const handleClick = (skill: string) => {
+    if (!edit) return;
     if (selectedSkills.includes(skill)) {
       removeSkill(skill); // 선택 해제
     } else {
@@ -34,11 +36,6 @@ const SkillsSection = ({ skills }: SkillSectionProps) => {
 
   return (
     <Box sx={{ padding: "16px", margin: "0 auto" }}>
-      {/* 필터 기능 설명 */}
-      <Box sx={{ marginBottom: "16px", textAlign: "center", color: "#555" }}>
-        <strong>Skill을 클릭하여 포트폴리오를 필터링할 수 있습니다.</strong>
-      </Box>
-
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
