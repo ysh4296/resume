@@ -1641,7 +1641,7 @@ declare namespace Queries {
     _createdAt: InputMaybe<DateQueryOperatorInput>;
     _id: InputMaybe<StringQueryOperatorInput>;
     _key: InputMaybe<StringQueryOperatorInput>;
-    _rawImage: InputMaybe<JSONQueryOperatorInput>;
+    _rawImages: InputMaybe<JSONQueryOperatorInput>;
     _rawSkills: InputMaybe<JSONQueryOperatorInput>;
     _rawSlug: InputMaybe<JSONQueryOperatorInput>;
     _rev: InputMaybe<StringQueryOperatorInput>;
@@ -1652,7 +1652,7 @@ declare namespace Queries {
     description: InputMaybe<StringQueryOperatorInput>;
     endDate: InputMaybe<StringQueryOperatorInput>;
     id: InputMaybe<StringQueryOperatorInput>;
-    image: InputMaybe<SanityImageFilterInput>;
+    images: InputMaybe<SanityImageFilterListInput>;
     internal: InputMaybe<InternalFilterInput>;
     parent: InputMaybe<NodeFilterInput>;
     skills: InputMaybe<SanitySkillCategoryFilterListInput>;
@@ -2182,7 +2182,7 @@ declare namespace Queries {
     readonly description: Maybe<Scalars["String"]>;
     /** Enter the year and month (e.g., 2025-01) */
     readonly endDate: Maybe<Scalars["String"]>;
-    readonly image: Maybe<SANITY_Image>;
+    readonly images: Maybe<ReadonlyArray<Maybe<SANITY_Image>>>;
     readonly skills: Maybe<ReadonlyArray<Maybe<SANITY_SkillCategory>>>;
     readonly slug: Maybe<SANITY_Slug>;
     /** Enter the year and month (e.g., 2025-01) */
@@ -2202,7 +2202,6 @@ declare namespace Queries {
     readonly content: InputMaybe<SANITY_StringFilter>;
     readonly description: InputMaybe<SANITY_StringFilter>;
     readonly endDate: InputMaybe<SANITY_StringFilter>;
-    readonly image: InputMaybe<SANITY_ImageFilter>;
     readonly slug: InputMaybe<SANITY_SlugFilter>;
     readonly startDate: InputMaybe<SANITY_StringFilter>;
     readonly title: InputMaybe<SANITY_StringFilter>;
@@ -2218,7 +2217,6 @@ declare namespace Queries {
     readonly content: InputMaybe<SANITY_SortOrder>;
     readonly description: InputMaybe<SANITY_SortOrder>;
     readonly endDate: InputMaybe<SANITY_SortOrder>;
-    readonly image: InputMaybe<SANITY_ImageSorting>;
     readonly slug: InputMaybe<SANITY_SlugSorting>;
     readonly startDate: InputMaybe<SANITY_SortOrder>;
     readonly title: InputMaybe<SANITY_SortOrder>;
@@ -3382,6 +3380,10 @@ declare namespace Queries {
     readonly hotspot: InputMaybe<SanityImageHotspotFilterInput>;
   };
 
+  type SanityImageFilterListInput = {
+    readonly elemMatch: InputMaybe<SanityImageFilterInput>;
+  };
+
   type SanityImageFit =
     | "clip"
     | "crop"
@@ -3834,7 +3836,7 @@ declare namespace Queries {
       readonly _createdAt: Maybe<Scalars["Date"]>;
       readonly _id: Maybe<Scalars["String"]>;
       readonly _key: Maybe<Scalars["String"]>;
-      readonly _rawImage: Maybe<Scalars["JSON"]>;
+      readonly _rawImages: Maybe<Scalars["JSON"]>;
       readonly _rawSkills: Maybe<Scalars["JSON"]>;
       readonly _rawSlug: Maybe<Scalars["JSON"]>;
       readonly _rev: Maybe<Scalars["String"]>;
@@ -3845,7 +3847,7 @@ declare namespace Queries {
       readonly description: Maybe<Scalars["String"]>;
       readonly endDate: Maybe<Scalars["String"]>;
       readonly id: Scalars["ID"];
-      readonly image: Maybe<SanityImage>;
+      readonly images: Maybe<ReadonlyArray<Maybe<SanityImage>>>;
       readonly internal: Internal;
       readonly parent: Maybe<Node>;
       readonly skills: Maybe<ReadonlyArray<Maybe<SanitySkillCategory>>>;
@@ -3861,7 +3863,7 @@ declare namespace Queries {
     locale: InputMaybe<Scalars["String"]>;
   };
 
-  type SanityPost__rawImageArgs = {
+  type SanityPost__rawImagesArgs = {
     resolveReferences: InputMaybe<SanityResolveReferencesConfiguration>;
   };
 
@@ -3924,7 +3926,7 @@ declare namespace Queries {
     readonly _createdAt: InputMaybe<FieldSelectorEnum>;
     readonly _id: InputMaybe<FieldSelectorEnum>;
     readonly _key: InputMaybe<FieldSelectorEnum>;
-    readonly _rawImage: InputMaybe<FieldSelectorEnum>;
+    readonly _rawImages: InputMaybe<FieldSelectorEnum>;
     readonly _rawSkills: InputMaybe<FieldSelectorEnum>;
     readonly _rawSlug: InputMaybe<FieldSelectorEnum>;
     readonly _rev: InputMaybe<FieldSelectorEnum>;
@@ -3935,7 +3937,7 @@ declare namespace Queries {
     readonly description: InputMaybe<FieldSelectorEnum>;
     readonly endDate: InputMaybe<FieldSelectorEnum>;
     readonly id: InputMaybe<FieldSelectorEnum>;
-    readonly image: InputMaybe<SanityImageFieldSelector>;
+    readonly images: InputMaybe<SanityImageFieldSelector>;
     readonly internal: InputMaybe<InternalFieldSelector>;
     readonly parent: InputMaybe<NodeFieldSelector>;
     readonly skills: InputMaybe<SanitySkillCategoryFieldSelector>;
@@ -3948,7 +3950,7 @@ declare namespace Queries {
     readonly _createdAt: InputMaybe<DateQueryOperatorInput>;
     readonly _id: InputMaybe<StringQueryOperatorInput>;
     readonly _key: InputMaybe<StringQueryOperatorInput>;
-    readonly _rawImage: InputMaybe<JSONQueryOperatorInput>;
+    readonly _rawImages: InputMaybe<JSONQueryOperatorInput>;
     readonly _rawSkills: InputMaybe<JSONQueryOperatorInput>;
     readonly _rawSlug: InputMaybe<JSONQueryOperatorInput>;
     readonly _rev: InputMaybe<StringQueryOperatorInput>;
@@ -3959,7 +3961,7 @@ declare namespace Queries {
     readonly description: InputMaybe<StringQueryOperatorInput>;
     readonly endDate: InputMaybe<StringQueryOperatorInput>;
     readonly id: InputMaybe<StringQueryOperatorInput>;
-    readonly image: InputMaybe<SanityImageFilterInput>;
+    readonly images: InputMaybe<SanityImageFilterListInput>;
     readonly internal: InputMaybe<InternalFilterInput>;
     readonly parent: InputMaybe<NodeFilterInput>;
     readonly skills: InputMaybe<SanitySkillCategoryFilterListInput>;
@@ -4008,7 +4010,7 @@ declare namespace Queries {
     readonly _createdAt: InputMaybe<SortOrderEnum>;
     readonly _id: InputMaybe<SortOrderEnum>;
     readonly _key: InputMaybe<SortOrderEnum>;
-    readonly _rawImage: InputMaybe<SortOrderEnum>;
+    readonly _rawImages: InputMaybe<SortOrderEnum>;
     readonly _rawSkills: InputMaybe<SortOrderEnum>;
     readonly _rawSlug: InputMaybe<SortOrderEnum>;
     readonly _rev: InputMaybe<SortOrderEnum>;
@@ -4019,7 +4021,7 @@ declare namespace Queries {
     readonly description: InputMaybe<SortOrderEnum>;
     readonly endDate: InputMaybe<SortOrderEnum>;
     readonly id: InputMaybe<SortOrderEnum>;
-    readonly image: InputMaybe<SanityImageSortInput>;
+    readonly images: InputMaybe<SanityImageSortInput>;
     readonly internal: InputMaybe<InternalSortInput>;
     readonly parent: InputMaybe<NodeSortInput>;
     readonly skills: InputMaybe<SanitySkillCategorySortInput>;
@@ -4973,17 +4975,21 @@ declare namespace Queries {
   type GetAllPostsQueryVariables = Exact<{ [key: string]: never }>;
 
   type GetAllPostsQuery = {
-    readonly sanity: {
-      readonly allPost: ReadonlyArray<{
+    readonly allSanityPost: {
+      readonly nodes: ReadonlyArray<{
         readonly title: string | null;
         readonly description: string | null;
         readonly startDate: string | null;
         readonly endDate: string | null;
         readonly content: string | null;
         readonly slug: { readonly current: string | null } | null;
-        readonly image: {
-          readonly asset: { readonly url: string | null } | null;
-        } | null;
+        readonly images: ReadonlyArray<{
+          readonly asset: {
+            readonly gatsbyImageData: import(
+              "gatsby-plugin-image",
+            ).IGatsbyImageData;
+          } | null;
+        } | null> | null;
         readonly skills: ReadonlyArray<{
           readonly category: string | null;
           readonly skill: ReadonlyArray<string | null> | null;

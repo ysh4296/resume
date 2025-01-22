@@ -5,7 +5,7 @@ import { useSelectedSkillsStore } from "@store/select";
 import PortfolioItem from "./PortfolioItem";
 
 interface PortfolioListProps {
-  portfolios: Queries.GetAllPostsQuery["sanity"]["allPost"];
+  portfolios: Queries.GetAllPostsQuery["allSanityPost"]["nodes"];
 }
 
 const PortfolioList = ({ portfolios }: PortfolioListProps) => {

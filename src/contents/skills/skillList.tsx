@@ -12,7 +12,7 @@ import {
 import { useSelectedSkillsStore } from "@store/select"; // zustand 저장소 가져오기
 
 interface SkillSectionProps {
-  skills: Queries.GetAllPostsQuery["sanity"]["allPost"][number]["skills"];
+  skills: Queries.GetAllPostsQuery["allSanityPost"]["nodes"][number]["skills"];
   edit?: boolean;
 }
 

@@ -5,8 +5,8 @@ import { useStaticQuery } from "gatsby";
 export const usePortfolioData = () => {
   const data = useStaticQuery<Queries.GetAllPostsQuery>(graphql`
     query GetAllPosts {
-      sanity {
-        allPost {
+      allSanityPost {
+        nodes {
           title
           description
           slug {
@@ -14,9 +14,12 @@ export const usePortfolioData = () => {
           }
           startDate
           endDate
-          image {
+          images {
             asset {
-              url
+              gatsbyImageData(
+                placeholder: BLURRED
+                formats: [AUTO, WEBP, AVIF]
+              )
             }
           }
           skills {
@@ -29,5 +32,5 @@ export const usePortfolioData = () => {
     }
   `);
 
-  return data.sanity.allPost;
+  return data.allSanityPost.nodes;
 };

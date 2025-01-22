@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import PortfolioDetail from "./PortfolioDetail";
 
 interface PortfolioItemProps {
-  portfolio: Queries.GetAllPostsQuery["sanity"]["allPost"][number];
+  portfolio: Queries.GetAllPostsQuery["allSanityPost"]["nodes"][number];
 }
 
 const PortfolioItem = ({ portfolio }: PortfolioItemProps) => {
@@ -54,7 +54,7 @@ const PortfolioItem = ({ portfolio }: PortfolioItemProps) => {
         onClick={() => toggleDrawer(true)} // 클릭 시 Drawer 열기
       >
         {/* 이미지 */}
-        {portfolio.image && (
+        {/* {portfolio.image && (
           <div style={styles.imageWrapper}>
             <img
               src={portfolio.image.asset.url}
@@ -62,7 +62,7 @@ const PortfolioItem = ({ portfolio }: PortfolioItemProps) => {
               style={styles.image}
             />
           </div>
-        )}
+        )} */}
 
         {/* 콘텐츠 */}
         <div style={styles.content}>
