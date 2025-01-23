@@ -1,11 +1,12 @@
 import { useJobData } from "@hooks/useJobData";
+import { Box } from "@mui/material";
 import JobItem from "./JobItem";
 
 const JobList = () => {
   const jobs = useJobData();
 
   return (
-    <>
+    <Box marginX="72px">
       {jobs.map((job) => (
         <JobItem
           key={job.name}
@@ -17,7 +18,7 @@ const JobList = () => {
           content={job.content}
         />
       ))}
-    </>
+    </Box>
   );
 };
 

@@ -182,6 +182,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     gap: "16px", // 각 카드 간격
     paddingTop: "16px",
     minHeight: "800px",
+    marginLeft: "72px",
+    marginRight: "72px",
   },
   selectedSkillsContainer: {
     display: "flex",
