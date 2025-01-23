@@ -1647,6 +1647,7 @@ declare namespace GatsbyTypes {
     content: InputMaybe<StringQueryOperatorInput>;
     description: InputMaybe<StringQueryOperatorInput>;
     endDate: InputMaybe<StringQueryOperatorInput>;
+    git: InputMaybe<StringQueryOperatorInput>;
     id: InputMaybe<StringQueryOperatorInput>;
     images: InputMaybe<SanityImageFilterListInput>;
     internal: InputMaybe<InternalFilterInput>;
@@ -1655,6 +1656,8 @@ declare namespace GatsbyTypes {
     slug: InputMaybe<SanitySlugFilterInput>;
     startDate: InputMaybe<StringQueryOperatorInput>;
     title: InputMaybe<StringQueryOperatorInput>;
+    type: InputMaybe<StringQueryOperatorInput>;
+    url: InputMaybe<StringQueryOperatorInput>;
   };
 
   type Query_siteArgs = {
@@ -3840,6 +3843,7 @@ declare namespace GatsbyTypes {
       readonly content: Maybe<Scalars["String"]>;
       readonly description: Maybe<Scalars["String"]>;
       readonly endDate: Maybe<Scalars["String"]>;
+      readonly git: Maybe<Scalars["String"]>;
       readonly id: Scalars["ID"];
       readonly images: Maybe<ReadonlyArray<Maybe<SanityImage>>>;
       readonly internal: Internal;
@@ -3848,6 +3852,8 @@ declare namespace GatsbyTypes {
       readonly slug: Maybe<SanitySlug>;
       readonly startDate: Maybe<Scalars["String"]>;
       readonly title: Maybe<Scalars["String"]>;
+      readonly type: Maybe<Scalars["String"]>;
+      readonly url: Maybe<Scalars["String"]>;
     };
 
   type SanityPost__createdAtArgs = {
@@ -3930,6 +3936,7 @@ declare namespace GatsbyTypes {
     readonly content: InputMaybe<FieldSelectorEnum>;
     readonly description: InputMaybe<FieldSelectorEnum>;
     readonly endDate: InputMaybe<FieldSelectorEnum>;
+    readonly git: InputMaybe<FieldSelectorEnum>;
     readonly id: InputMaybe<FieldSelectorEnum>;
     readonly images: InputMaybe<SanityImageFieldSelector>;
     readonly internal: InputMaybe<InternalFieldSelector>;
@@ -3938,6 +3945,8 @@ declare namespace GatsbyTypes {
     readonly slug: InputMaybe<SanitySlugFieldSelector>;
     readonly startDate: InputMaybe<FieldSelectorEnum>;
     readonly title: InputMaybe<FieldSelectorEnum>;
+    readonly type: InputMaybe<FieldSelectorEnum>;
+    readonly url: InputMaybe<FieldSelectorEnum>;
   };
 
   type SanityPostFilterInput = {
@@ -3954,6 +3963,7 @@ declare namespace GatsbyTypes {
     readonly content: InputMaybe<StringQueryOperatorInput>;
     readonly description: InputMaybe<StringQueryOperatorInput>;
     readonly endDate: InputMaybe<StringQueryOperatorInput>;
+    readonly git: InputMaybe<StringQueryOperatorInput>;
     readonly id: InputMaybe<StringQueryOperatorInput>;
     readonly images: InputMaybe<SanityImageFilterListInput>;
     readonly internal: InputMaybe<InternalFilterInput>;
@@ -3962,6 +3972,8 @@ declare namespace GatsbyTypes {
     readonly slug: InputMaybe<SanitySlugFilterInput>;
     readonly startDate: InputMaybe<StringQueryOperatorInput>;
     readonly title: InputMaybe<StringQueryOperatorInput>;
+    readonly type: InputMaybe<StringQueryOperatorInput>;
+    readonly url: InputMaybe<StringQueryOperatorInput>;
   };
 
   type SanityPostGroupConnection = {
@@ -4014,6 +4026,7 @@ declare namespace GatsbyTypes {
     readonly content: InputMaybe<SortOrderEnum>;
     readonly description: InputMaybe<SortOrderEnum>;
     readonly endDate: InputMaybe<SortOrderEnum>;
+    readonly git: InputMaybe<SortOrderEnum>;
     readonly id: InputMaybe<SortOrderEnum>;
     readonly images: InputMaybe<SanityImageSortInput>;
     readonly internal: InputMaybe<InternalSortInput>;
@@ -4022,6 +4035,8 @@ declare namespace GatsbyTypes {
     readonly slug: InputMaybe<SanitySlugSortInput>;
     readonly startDate: InputMaybe<SortOrderEnum>;
     readonly title: InputMaybe<SortOrderEnum>;
+    readonly type: InputMaybe<SortOrderEnum>;
+    readonly url: InputMaybe<SortOrderEnum>;
   };
 
   type SanityResolveReferencesConfiguration = {
@@ -4860,6 +4875,9 @@ declare namespace GatsbyTypes {
       readonly nodes: ReadonlyArray<{
         readonly title: string | null;
         readonly description: string | null;
+        readonly type: string | null;
+        readonly url: string | null;
+        readonly git: string | null;
         readonly startDate: string | null;
         readonly endDate: string | null;
         readonly content: string | null;

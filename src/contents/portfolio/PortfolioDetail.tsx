@@ -1,6 +1,8 @@
 import SkillsSection from "@contents/skills/skillList";
 import CloseIcon from "@mui/icons-material/Close";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import {
   Box,
   Chip,
@@ -53,31 +55,39 @@ const PortfolioDetail = ({
         sx={{
           "& .MuiDrawer-paper": {
             width: "100vw",
-            padding: "72px",
             backgroundColor: "#f9f9f9",
+            padding: "72px",
           },
         }}
       >
-        <Stack direction="row-reverse">
-          <IconButton onClick={onClose}>
-            <CloseIcon sx={{ width: "48px", height: "48px" }} />
-          </IconButton>
-        </Stack>
-        {/* Drawer Header */}
-        <Box
+        <Stack
+          flexDirection="row-reverse"
           sx={{
             display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
             marginBottom: "16px",
+            position: "sticky",
+            top: 0,
+            zIndex: 1000,
+            // blur background
           }}
         >
-          <Stack direction="row" gap="8px">
-            <Typography variant="h2" sx={{ fontWeight: "bold" }}>
-              {portfolio.title}
-            </Typography>
-          </Stack>
-        </Box>
+          {/* Drawer Header */}
+          <IconButton onClick={onClose}>
+            <CloseIcon
+              sx={{
+                width: "48px",
+                height: "48px",
+                borderRadius: "100%",
+                backdropFilter: "blur(10px)",
+              }}
+            />
+          </IconButton>
+        </Stack>
+        <Stack direction="row" gap="8px" sx={{ marginBottom: "24px" }}>
+          <Typography variant="h2" sx={{ fontWeight: "bold" }}>
+            {portfolio.title}
+          </Typography>
+        </Stack>
         {/* 프로젝트 구분 */}
         <Box sx={{ marginBottom: "24px" }}>
           <Stack
@@ -96,7 +106,7 @@ const PortfolioDetail = ({
               구분
             </Typography>
             <Chip
-              label={"개인 프로젝트"}
+              label={portfolio.type}
               sx={{
                 backgroundColor: grey[200],
                 color: grey[800],
@@ -105,36 +115,13 @@ const PortfolioDetail = ({
             />
           </Stack>
 
-          {/* 프로젝트 URL */}
-          {portfolio && (
-            <Stack
-              direction="row"
-              alignItems="center"
-              spacing={2}
-              sx={{ marginBottom: "16px" }}
-            >
-              <Typography
-                variant="h6"
-                sx={{
-                  fontWeight: "bold",
-                  color: grey[700],
-                }}
-              >
-                URL
-              </Typography>
-              <Link
-                href={"https://github.com/ysh4296"}
-                target="_blank"
-                underline="hover"
-                color="primary"
-              >
-                {"https://github.com/ysh4296"}
-              </Link>
-            </Stack>
-          )}
-
           {/* 프로젝트 기간 */}
-          <Stack direction="row" alignItems="center" spacing={2}>
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing={2}
+            sx={{ marginBottom: "16px" }}
+          >
             <Typography
               variant="h6"
               sx={{
@@ -148,6 +135,53 @@ const PortfolioDetail = ({
               {portfolio.startDate} ~ {portfolio.endDate}
             </Typography>
           </Stack>
+
+          {/* 프로젝트 URL */}
+          {(portfolio.url || portfolio.git) && (
+            <Stack direction="row" alignItems="center" spacing={2}>
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: "bold",
+                  color: grey[700],
+                }}
+              >
+                URL
+              </Typography>
+              {portfolio.url && (
+                <IconButton
+                  component={Link}
+                  href={portfolio.url}
+                  target="_blank"
+                  sx={{
+                    backgroundColor: grey[200],
+                    color: grey[800],
+                    "&:hover": {
+                      backgroundColor: grey[300],
+                    },
+                  }}
+                >
+                  <OpenInNewIcon />
+                </IconButton>
+              )}
+              {portfolio.git && (
+                <IconButton
+                  component={Link}
+                  href={portfolio.git}
+                  target="_blank"
+                  sx={{
+                    backgroundColor: grey[200],
+                    color: grey[800],
+                    "&:hover": {
+                      backgroundColor: grey[300],
+                    },
+                  }}
+                >
+                  <GitHubIcon />
+                </IconButton>
+              )}
+            </Stack>
+          )}
         </Box>
 
         {/* Images */}
@@ -163,7 +197,10 @@ const PortfolioDetail = ({
             </Typography>
             <Tooltip
               title={
-                "인턴쉽을 통해 진행한 프로젝트들은 실제 프로젝트 정보가 아닌 비슷한 서비스의 이미지를 차용하였습니다."
+                <Typography variant="body2">
+                  인턴쉽을 통해 진행한 프로젝트들은 실제 프로젝트 정보가 아닌
+                  비슷한 서비스의 이미지를 차용하였습니다.
+                </Typography>
               } // 툴팁에 이미지 정보 표시
               placement="right"
               arrow
@@ -284,7 +321,7 @@ const PortfolioDetail = ({
           <GatsbyImage
             image={selectedImage}
             alt="Fullscreen Image"
-            style={{ width: "400px", maxWidth: "calc(100vw-144px)" }}
+            style={{ width: "100%" }}
             imgStyle={{
               objectFit: "contain",
             }}

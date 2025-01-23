@@ -12,6 +12,9 @@ export const usePortfolioData = () => {
           slug {
             current
           }
+          type
+          url
+          git
           startDate
           endDate
           images {
