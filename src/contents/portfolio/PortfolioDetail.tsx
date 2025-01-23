@@ -281,20 +281,6 @@ const PortfolioDetail = ({
         </Box>
 
         <Box>
-          <Typography
-            variant="h6"
-            sx={{ fontWeight: "bold", marginBottom: "16px" }}
-          >
-            Content
-          </Typography>
-          {/* <Box
-            sx={{
-              padding: "16px",
-              backgroundColor: "#fff",
-              borderRadius: "8px",
-              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-            }}
-          > */}
           <Markdown>
             {portfolio.content || "No additional content available."}
           </Markdown>
