@@ -4,7 +4,12 @@ export const useFilteredPortfolios = (portfolios, selectedSkills) => {
   return useMemo(() => {
     if (selectedSkills.length === 0) {
       // endDate 기준으로 내림차순 정렬
-      return portfolios.sort((a, b) => (b.endDate > a.endDate ? 1 : -1));
+      return portfolios.sort((a, b) => {
+        if (b.endDate !== a.endDate) {
+          return b.endDate > a.endDate ? 1 : -1;
+        }
+        return b.startDate < a.startDate ? 1 : -1;
+      });
     }
 
     const filteredPortfolios = portfolios.filter((portfolio) =>

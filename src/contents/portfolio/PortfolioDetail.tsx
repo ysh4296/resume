@@ -1,12 +1,15 @@
 import SkillsSection from "@contents/skills/skillList";
 import CloseIcon from "@mui/icons-material/Close";
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import {
   Box,
+  Chip,
   Dialog,
-  Divider,
   Drawer,
   IconButton,
+  Link,
   Stack,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import { grey } from "@mui/material/colors";
@@ -49,12 +52,17 @@ const PortfolioDetail = ({
         onClose={onClose}
         sx={{
           "& .MuiDrawer-paper": {
-            width: "80vw",
-            padding: "24px",
+            width: "100vw",
+            padding: "72px",
             backgroundColor: "#f9f9f9",
           },
         }}
       >
+        <Stack direction="row-reverse">
+          <IconButton onClick={onClose}>
+            <CloseIcon sx={{ width: "48px", height: "48px" }} />
+          </IconButton>
+        </Stack>
         {/* Drawer Header */}
         <Box
           sx={{
@@ -65,60 +73,120 @@ const PortfolioDetail = ({
           }}
         >
           <Stack direction="row" gap="8px">
-            <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+            <Typography variant="h2" sx={{ fontWeight: "bold" }}>
               {portfolio.title}
             </Typography>
+          </Stack>
+        </Box>
+        {/* 프로젝트 구분 */}
+        <Box sx={{ marginBottom: "24px" }}>
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing={2}
+            sx={{ marginBottom: "16px" }}
+          >
             <Typography
-              variant="subtitle2"
+              variant="h6"
               sx={{
-                backgroundColor: "#e0f7fa",
-                padding: "4px 8px",
-                borderRadius: "4px",
+                fontWeight: "bold",
+                color: grey[700],
               }}
             >
+              구분
+            </Typography>
+            <Chip
+              label={"개인 프로젝트"}
+              sx={{
+                backgroundColor: grey[200],
+                color: grey[800],
+                fontWeight: "bold",
+              }}
+            />
+          </Stack>
+
+          {/* 프로젝트 URL */}
+          {portfolio && (
+            <Stack
+              direction="row"
+              alignItems="center"
+              spacing={2}
+              sx={{ marginBottom: "16px" }}
+            >
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: "bold",
+                  color: grey[700],
+                }}
+              >
+                URL
+              </Typography>
+              <Link
+                href={"https://github.com/ysh4296"}
+                target="_blank"
+                underline="hover"
+                color="primary"
+              >
+                {"https://github.com/ysh4296"}
+              </Link>
+            </Stack>
+          )}
+
+          {/* 프로젝트 기간 */}
+          <Stack direction="row" alignItems="center" spacing={2}>
+            <Typography
+              variant="h6"
+              sx={{
+                fontWeight: "bold",
+                color: grey[700],
+              }}
+            >
+              기간
+            </Typography>
+            <Typography variant="body1" sx={{ color: grey[600] }}>
               {portfolio.startDate} ~ {portfolio.endDate}
             </Typography>
           </Stack>
-          <IconButton onClick={onClose}>
-            <CloseIcon />
-          </IconButton>
         </Box>
-
-        <Divider sx={{ marginBottom: "16px" }} />
-
-        {/* Description */}
-        <Box sx={{ marginBottom: "24px" }}>
-          <Typography
-            variant="body1"
-            color="textSecondary"
-            sx={{ marginBottom: "8px" }}
-          >
-            {portfolio.description}
-          </Typography>
-        </Box>
-
-        <Divider sx={{ marginBottom: "16px" }} />
 
         {/* Images */}
         <Box sx={{ marginBottom: "24px" }}>
-          <Typography
-            variant="h6"
-            sx={{ fontWeight: "bold", marginBottom: "8px" }}
+          <Stack
+            direction="row"
+            gap="8px"
+            alignItems="center"
+            marginBottom="8px"
           >
-            Images
-          </Typography>
-          <Typography sx={{ color: grey[600], marginBottom: "16px" }}>
-            인턴쉽을 통해 진행한 프로젝트들은 실제 프로젝트 정보가 아닌 비슷한
-            서비스의 이미지를 차용하였습니다.
-          </Typography>
+            <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+              Images
+            </Typography>
+            <Tooltip
+              title={
+                "인턴쉽을 통해 진행한 프로젝트들은 실제 프로젝트 정보가 아닌 비슷한 서비스의 이미지를 차용하였습니다."
+              } // 툴팁에 이미지 정보 표시
+              placement="right"
+              arrow
+            >
+              <HelpOutlineIcon />
+            </Tooltip>
+          </Stack>
           {portfolio.images.length > 0 ? (
             <Stack
               direction="row"
               sx={{
                 overflow: "auto",
+                scrollSnapType: "x mandatory", // 가로 방향 snap scroll
                 gap: "16px",
               }}
             >
+              {/* 시작 패딩 */}
+              <Box
+                sx={{
+                  flexShrink: 0,
+                  width: "calc((100vw - 400px) / 2)", // 시작 여백 계산 (400px은 이미지 너비)
+                }}
+              />
               {portfolio.images.map((image, index) => {
                 const gatsbyImage = getImage(image.asset.gatsbyImageData);
                 return (
@@ -130,13 +198,18 @@ const PortfolioDetail = ({
                         boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
                         backgroundColor: "#fff",
                         cursor: "pointer",
+                        scrollSnapAlign: "center", // 각 이미지가 뷰포트 중앙에 정렬
+                        alignContent: "center",
                       }}
                       onClick={() => handleImageClick(gatsbyImage)}
                     >
                       <GatsbyImage
                         image={gatsbyImage}
                         alt={`${portfolio.title} - Image ${index + 1}`}
-                        style={{ width: "400px", height: "400px" }}
+                        style={{
+                          maxWidth: "calc(100vw - 144px)",
+                          width: "600px",
+                        }}
                         imgStyle={{
                           objectFit: "contain",
                           objectPosition: "center",
@@ -146,15 +219,20 @@ const PortfolioDetail = ({
                   )
                 );
               })}
+
+              {/* 끝 패딩 */}
+              <Box
+                sx={{
+                  flexShrink: 0,
+                  width: "calc((100vw - 400px) / 2)", // 끝 여백 계산 (400px은 이미지 너비)
+                }}
+              />
             </Stack>
           ) : (
             <Typography color="textSecondary">No images available.</Typography>
           )}
         </Box>
 
-        <Divider sx={{ marginBottom: "16px" }} />
-
-        {/* Skills */}
         <Box sx={{ marginBottom: "24px" }}>
           <Typography
             variant="h6"
@@ -165,9 +243,6 @@ const PortfolioDetail = ({
           <SkillsSection skills={portfolio.skills} />
         </Box>
 
-        <Divider sx={{ marginBottom: "16px" }} />
-
-        {/* Content */}
         <Box>
           <Typography
             variant="h6"
@@ -175,18 +250,18 @@ const PortfolioDetail = ({
           >
             Content
           </Typography>
-          <Box
+          {/* <Box
             sx={{
               padding: "16px",
               backgroundColor: "#fff",
               borderRadius: "8px",
               boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
             }}
-          >
-            <Markdown>
-              {portfolio.content || "No additional content available."}
-            </Markdown>
-          </Box>
+          > */}
+          <Markdown>
+            {portfolio.content || "No additional content available."}
+          </Markdown>
+          {/* </Box> */}
         </Box>
       </Drawer>
 
@@ -209,10 +284,9 @@ const PortfolioDetail = ({
           <GatsbyImage
             image={selectedImage}
             alt="Fullscreen Image"
-            style={{ width: "100%", maxHeight: "80vh" }}
+            style={{ width: "400px", maxWidth: "calc(100vw-144px)" }}
             imgStyle={{
               objectFit: "contain",
-              objectPosition: "center",
             }}
           />
         )}
