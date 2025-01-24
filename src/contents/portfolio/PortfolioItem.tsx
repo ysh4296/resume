@@ -1,3 +1,5 @@
+import { Chip } from "@mui/material";
+import { grey } from "@mui/material/colors";
 import { useEffect, useRef, useState } from "react";
 import PortfolioDetail from "./PortfolioDetail";
 
@@ -50,6 +52,7 @@ const PortfolioItem = ({ portfolio }: PortfolioItemProps) => {
           transition:
             "opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease",
           cursor: "pointer", // 클릭 가능하도록 커서 변경
+          alignItems: "center",
         }}
         onClick={() => toggleDrawer(true)} // 클릭 시 Drawer 열기
       >
@@ -72,6 +75,15 @@ const PortfolioItem = ({ portfolio }: PortfolioItemProps) => {
             {portfolio.startDate} ~ {portfolio.endDate}
           </div>
         </div>
+
+        <Chip
+          label={portfolio.type}
+          sx={{
+            backgroundColor: grey[200],
+            color: grey[800],
+            fontWeight: "bold",
+          }}
+        />
       </div>
 
       <PortfolioDetail
@@ -94,7 +106,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   card: {
     display: "flex",
     flexDirection: "row", // 이미지와 텍스트를 나란히 배치
-    alignItems: "flex-start",
+    alignItems: "space-between",
     borderBottom: "1px solid #ddd",
     overflow: "hidden",
     backgroundColor: "#fff",

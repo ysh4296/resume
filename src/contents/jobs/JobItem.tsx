@@ -26,7 +26,6 @@ const JobItem: React.FC<JobItemProps> = ({
 
   return (
     <div style={styles.container}>
-      {/* 이미지 */}
       {gatsbyImage && (
         <div style={styles.imageWrapper}>
           <GatsbyImage
@@ -41,7 +40,6 @@ const JobItem: React.FC<JobItemProps> = ({
         </div>
       )}
 
-      {/* 내용 */}
       <div style={styles.contentWrapper}>
         <div style={styles.header}>
           <h2 style={styles.title}>{name}</h2>
@@ -65,12 +63,8 @@ const styles: { [key: string]: React.CSSProperties } = {
   container: {
     display: "flex",
     flexDirection: "row",
-    border: "1px solid #ddd",
-    borderRadius: "8px",
     padding: "16px",
     marginBottom: "16px",
-    backgroundColor: "#f9f9f9",
-    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
     gap: "16px",
   },
   imageWrapper: {

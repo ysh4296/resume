@@ -1,4 +1,4 @@
-import SkillsSection from "@contents/skills/skillList";
+import SkillFilter from "@contents/skills/skillFilter";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import { Box, Chip, Stack, Typography } from "@mui/material";
@@ -21,7 +21,16 @@ const PortfolioList = ({ skills, portfolios }: PortfolioListProps) => {
 
   // SkillsSection 상태 관리
   const [isSkillsSectionOpen, setIsSkillsSectionOpen] = useState(false);
+  const filterButtonRef = useRef<HTMLDivElement | null>(null);
   const skillsSectionRef = useRef<HTMLDivElement | null>(null);
+
+  const handleFocusPortfolio = () => {
+    const portfolioElement = document.getElementById("portfolio");
+    if (portfolioElement) {
+      portfolioElement.scrollIntoView({ behavior: "smooth", block: "start" });
+      portfolioElement.focus(); // 포커스
+    }
+  };
 
   const toggleSkillsSection = () => {
     setIsSkillsSectionOpen((prev) => !prev);
@@ -32,9 +41,11 @@ const PortfolioList = ({ skills, portfolios }: PortfolioListProps) => {
     const handleOutsideClick = (event: MouseEvent) => {
       if (
         skillsSectionRef.current &&
-        !skillsSectionRef.current.contains(event.target as Node)
+        !skillsSectionRef.current.contains(event.target as Node) &&
+        !filterButtonRef.current.contains(event.target as Node)
       ) {
         setIsSkillsSectionOpen(false); // 외부 클릭 시 닫기
+        handleFocusPortfolio();
       }
     };
     if (isSkillsSectionOpen) {
@@ -68,14 +79,64 @@ const PortfolioList = ({ skills, portfolios }: PortfolioListProps) => {
         onClick={toggleSkillsSection} // 필터 영역 밖 클릭 시 닫기
       />
       {/* 선택된 스킬 표시 */}
-      <Stack
-        direction="row-reverse"
-        justifyContent="space-between"
-        width="100%"
-      >
-        {/* 필터 아이콘 */}
-        <Box sx={{ position: "relative", zIndex: 1000 }}>
+
+      <div style={styles.selectedSkillsContainer}>
+        <Stack flexDirection="row">
+          <Box
+            sx={{
+              textAlign: "center",
+              color: "#555",
+              marginX: "20px",
+              textWrap: "nowrap",
+              overflowY: "visible",
+              alignContent: "center",
+            }}
+          >
+            <strong>선택된 필터</strong>
+          </Box>
+
+          {/* Reset 버튼 */}
           <Chip
+            icon={<RestartAltIcon style={{ color: "#fff" }} />}
+            label="Reset"
+            sx={{
+              backgroundColor: grey[600],
+              color: "#fff",
+              fontWeight: "bold",
+              marginRight: "8px",
+              cursor: "pointer",
+            }}
+            onClick={resetSkill}
+          />
+
+          <div style={styles.chipContainer}>
+            {selectedSkills.map((selectedSkill) => (
+              <Chip
+                key={selectedSkill}
+                label={selectedSkill}
+                sx={{
+                  backgroundColor: "#1976d2",
+                  color: "#fff",
+                  fontWeight: "bold",
+                  marginRight: "8px",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  removeSkill(selectedSkill);
+                  handleFocusPortfolio();
+                }}
+              />
+            ))}
+          </div>
+        </Stack>
+        <Stack
+          direction="row-reverse"
+          justifyContent="space-between"
+          sx={{ zIndex: 1000 }}
+        >
+          {/* 필터 아이콘 */}
+          <Chip
+            ref={filterButtonRef}
             icon={<FilterAltIcon style={{ color: "#fff" }} />}
             label="Filter"
             sx={{
@@ -88,65 +149,24 @@ const PortfolioList = ({ skills, portfolios }: PortfolioListProps) => {
             onClick={toggleSkillsSection}
           />
           {/* SkillsSection - Icon 기준 Popup */}
-          <div
-            ref={skillsSectionRef}
-            style={{
-              ...styles.skillsSectionPopup,
-              transition: "opacity 0.4s ease, transform 0.4s ease", // opacity와 transform 전환 추가
-              opacity: isSkillsSectionOpen ? 1 : 0, // 열릴 때 1, 닫힐 때 0
-              transform: isSkillsSectionOpen
-                ? "translateY(0)" // 열릴 때 원래 위치
-                : "translateY(-10px)", // 닫힐 때 살짝 위로 이동
-              pointerEvents: isSkillsSectionOpen ? "auto" : "none", // 닫혔을 때 클릭 방지
-            }}
-          >
-            <SkillsSection skills={skills} edit />
-          </div>
-        </Box>
-      </Stack>
-      <div style={styles.selectedSkillsContainer}>
-        <Box
-          sx={{
-            textAlign: "center",
-            color: "#555",
-            marginX: "20px",
-            textWrap: "nowrap",
-            overflowY: "visible",
-          }}
-        >
-          <strong>선택된 필터</strong>
-        </Box>
 
-        {/* Reset 버튼 */}
-        <Chip
-          icon={<RestartAltIcon style={{ color: "#fff" }} />}
-          label="Reset"
-          sx={{
-            backgroundColor: grey[600],
-            color: "#fff",
-            fontWeight: "bold",
-            marginRight: "8px",
-            cursor: "pointer",
-          }}
-          onClick={resetSkill}
-        />
-
-        <div style={styles.chipContainer}>
-          {selectedSkills.map((selectedSkill) => (
-            <Chip
-              key={selectedSkill}
-              label={selectedSkill}
-              sx={{
-                backgroundColor: "#1976d2",
-                color: "#fff",
-                fontWeight: "bold",
-                marginRight: "8px",
-                cursor: "pointer",
+          <Box sx={{ position: "relative" }}>
+            <div
+              ref={skillsSectionRef}
+              style={{
+                ...styles.skillsSectionPopup,
+                transition: "opacity 0.4s ease, transform 0.4s ease", // opacity와 transform 전환 추가
+                opacity: isSkillsSectionOpen ? 1 : 0, // 열릴 때 1, 닫힐 때 0
+                transform: isSkillsSectionOpen
+                  ? "translateY(0)" // 열릴 때 원래 위치
+                  : "translateY(-10px)", // 닫힐 때 살짝 위로 이동
+                pointerEvents: isSkillsSectionOpen ? "auto" : "none", // 닫혔을 때 클릭 방지
               }}
-              onClick={() => removeSkill(selectedSkill)}
-            />
-          ))}
-        </div>
+            >
+              <SkillFilter skills={skills} edit />
+            </div>
+          </Box>
+        </Stack>
       </div>
 
       {/* 포트폴리오 리스트 */}
@@ -189,6 +209,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     display: "flex",
     alignItems: "center",
     marginBottom: "16px",
+    justifyContent: "space-between",
   },
   chipContainer: {
     display: "flex",
@@ -199,12 +220,10 @@ const styles: { [key: string]: React.CSSProperties } = {
   skillsSectionPopup: {
     position: "absolute",
     top: "40px", // 아이콘 바로 아래
-    right: "16px",
+    right: "-72px",
     zIndex: 1000,
     backgroundColor: "#fff",
     borderRadius: "8px",
-    border: "1px solid",
-    padding: "16px",
     width: "80vw", // 적절한 너비 설정
   },
   fallbackContainer: {

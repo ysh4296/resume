@@ -54,7 +54,7 @@ const PortfolioDetail = ({
         onClose={onClose}
         sx={{
           "& .MuiDrawer-paper": {
-            width: "100vw",
+            width: "80vw",
             backgroundColor: "#f9f9f9",
             padding: "72px",
           },
@@ -83,13 +83,17 @@ const PortfolioDetail = ({
             />
           </IconButton>
         </Stack>
-        <Stack direction="row" gap="8px" sx={{ marginBottom: "24px" }}>
+        <Stack
+          direction="row"
+          gap="8px"
+          sx={{ marginRight: "48px", marginTop: "-72px", marginBottom: "48px" }}
+        >
           <Typography variant="h2" sx={{ fontWeight: "bold" }}>
             {portfolio.title}
           </Typography>
         </Stack>
         {/* 프로젝트 구분 */}
-        <Box sx={{ marginBottom: "24px" }}>
+        <Box sx={{ marginBottom: "36px" }}>
           <Stack
             direction="row"
             alignItems="center"
@@ -184,6 +188,16 @@ const PortfolioDetail = ({
           )}
         </Box>
 
+        <Box sx={{ marginBottom: "24px" }}>
+          <SkillsSection skills={portfolio.skills} />
+        </Box>
+
+        <Box sx={{ marginBottom: "48px" }}>
+          <Markdown>
+            {portfolio.content || "No additional content available."}
+          </Markdown>
+          {/* </Box> */}
+        </Box>
         {/* Images */}
         <Box sx={{ marginBottom: "24px" }}>
           <Stack
@@ -192,7 +206,10 @@ const PortfolioDetail = ({
             alignItems="center"
             marginBottom="8px"
           >
-            <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            <Typography
+              variant="h4"
+              sx={{ fontWeight: "bold", marginBottom: "24px" }}
+            >
               Images
             </Typography>
             <Tooltip
@@ -244,8 +261,8 @@ const PortfolioDetail = ({
                         image={gatsbyImage}
                         alt={`${portfolio.title} - Image ${index + 1}`}
                         style={{
-                          maxWidth: "calc(100vw - 144px)",
-                          width: "600px",
+                          maxWidth: "calc(70vw)",
+                          width: "500px",
                         }}
                         imgStyle={{
                           objectFit: "contain",
@@ -269,26 +286,7 @@ const PortfolioDetail = ({
             <Typography color="textSecondary">No images available.</Typography>
           )}
         </Box>
-
-        <Box sx={{ marginBottom: "24px" }}>
-          <Typography
-            variant="h6"
-            sx={{ fontWeight: "bold", marginBottom: "8px" }}
-          >
-            Skills
-          </Typography>
-          <SkillsSection skills={portfolio.skills} />
-        </Box>
-
-        <Box>
-          <Markdown>
-            {portfolio.content || "No additional content available."}
-          </Markdown>
-          {/* </Box> */}
-        </Box>
       </Drawer>
-
-      {/* Dialog for Fullscreen Image */}
       <Dialog
         open={!!selectedImage}
         onClose={handleCloseDialog}
