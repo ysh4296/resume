@@ -28,6 +28,8 @@ const Intro = () => {
             marginRight: "auto",
             display: "block",
             border: "1px solid #ddd",
+            width: "400px",
+            height: "400px",
             borderRadius: "8px",
           }}
         />
