@@ -12,7 +12,7 @@ const Contact = () => {
         sx={{
           display: "flex",
           flexDirection: { xs: "row", sm: "column" },
-          gap: 4,
+          gap: 2,
         }}
       >
         {/* 이메일 */}

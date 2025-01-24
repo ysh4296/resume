@@ -6,7 +6,7 @@ const JobList = () => {
   const jobs = useJobData();
 
   return (
-    <Box marginX="72px">
+    <Box marginX="144px">
       {jobs.map((job) => (
         <JobItem
           key={job.name}
@@ -15,7 +15,6 @@ const JobList = () => {
           image={job.image.asset?.gatsbyImageData}
           startDate={job.startDate}
           endDate={job.endDate}
-          content={job.content}
         />
       ))}
     </Box>

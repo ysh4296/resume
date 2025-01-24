@@ -10,6 +10,7 @@ import {
   Drawer,
   IconButton,
   Link,
+  Paper,
   Stack,
   Tooltip,
   Typography,
@@ -204,12 +205,9 @@ const PortfolioDetail = ({
             direction="row"
             gap="8px"
             alignItems="center"
-            marginBottom="8px"
+            marginBottom="36px"
           >
-            <Typography
-              variant="h4"
-              sx={{ fontWeight: "bold", marginBottom: "24px" }}
-            >
+            <Typography variant="h4" sx={{ fontWeight: "bold" }}>
               Images
             </Typography>
             <Tooltip
@@ -232,6 +230,28 @@ const PortfolioDetail = ({
                 overflow: "auto",
                 scrollSnapType: "x mandatory", // 가로 방향 snap scroll
                 gap: "16px",
+
+                "::before, ::after": {
+                  content: '""',
+                  position: "absolute",
+                  top: 0,
+                  bottom: 0,
+                  width: "16px", // 패딩 영역만큼의 너비
+                  zIndex: 1,
+                  pointerEvents: "none", // 스크롤 등 인터랙션에 영향을 주지 않도록 설정
+                },
+                "::before": {
+                  left: 0,
+                  background:
+                    "linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0))",
+                  backdropFilter: "blur(8px)", // 좌측 패딩 부분에 blur 효과
+                },
+                "::after": {
+                  right: 0,
+                  background:
+                    "linear-gradient(to left, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0))",
+                  backdropFilter: "blur(8px)", // 우측 패딩 부분에 blur 효과
+                },
               }}
             >
               {/* 시작 패딩 */}
@@ -245,17 +265,15 @@ const PortfolioDetail = ({
                 const gatsbyImage = getImage(image.asset.gatsbyImageData);
                 return (
                   gatsbyImage && (
-                    <Box
-                      key={JSON.stringify(image.asset.gatsbyImageData.images)}
+                    <Paper
+                      elevation={4}
+                      onClick={() => handleImageClick(gatsbyImage)}
                       sx={{
-                        borderRadius: "8px",
-                        boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-                        backgroundColor: "#fff",
                         cursor: "pointer",
                         scrollSnapAlign: "center", // 각 이미지가 뷰포트 중앙에 정렬
                         alignContent: "center",
                       }}
-                      onClick={() => handleImageClick(gatsbyImage)}
+                      key={JSON.stringify(image.asset.gatsbyImageData.images)}
                     >
                       <GatsbyImage
                         image={gatsbyImage}
@@ -269,7 +287,19 @@ const PortfolioDetail = ({
                           objectPosition: "center",
                         }}
                       />
-                    </Box>
+                    </Paper>
+                    // <Box
+                    //   key={JSON.stringify(image.asset.gatsbyImageData.images)}
+                    //   sx={{
+                    //     borderRadius: "8px",
+                    //     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+                    //     backgroundColor: "#fff",
+                    //     cursor: "pointer",
+                    //   }}
+                    //   onClick={() => handleImageClick(gatsbyImage)}
+                    // >
+
+                    // </Box>
                   )
                 );
               })}

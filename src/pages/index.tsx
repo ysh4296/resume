@@ -33,6 +33,7 @@ const IndexPage = () => {
       <Stack
         direction="row"
         height="100vh"
+        width="100vw"
         overflow="auto"
         style={{ scrollBehavior: "smooth" }}
       >

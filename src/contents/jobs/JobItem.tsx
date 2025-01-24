@@ -3,7 +3,6 @@ import {
   type IGatsbyImageData,
   getImage,
 } from "gatsby-plugin-image";
-import Markdown from "react-markdown";
 
 interface JobItemProps {
   name: string;
@@ -11,7 +10,6 @@ interface JobItemProps {
   image: IGatsbyImageData | null;
   startDate: string;
   endDate: string;
-  content: string;
 }
 
 const JobItem: React.FC<JobItemProps> = ({
@@ -20,7 +18,6 @@ const JobItem: React.FC<JobItemProps> = ({
   image,
   startDate,
   endDate,
-  content,
 }) => {
   const gatsbyImage = image ? getImage(image) : null;
 
@@ -39,7 +36,6 @@ const JobItem: React.FC<JobItemProps> = ({
           />
         </div>
       )}
-
       <div style={styles.contentWrapper}>
         <div style={styles.header}>
           <h2 style={styles.title}>{name}</h2>
@@ -48,9 +44,6 @@ const JobItem: React.FC<JobItemProps> = ({
         <p style={styles.date}>
           <strong>근무 기간:</strong> {startDate} - {endDate}
         </p>
-
-        {/* Markdown Content */}
-        <Markdown>{content}</Markdown>
       </div>
     </div>
   );
@@ -62,7 +55,6 @@ export default JobItem;
 const styles: { [key: string]: React.CSSProperties } = {
   container: {
     display: "flex",
-    flexDirection: "row",
     padding: "16px",
     marginBottom: "16px",
     gap: "16px",
@@ -77,6 +69,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     borderRadius: "8px",
     overflow: "hidden", // 컨테이너 밖의 이미지를 잘라냄
     border: "1px solid",
+    borderColor: "#ddd",
   },
   image: {
     width: "100%",

@@ -26,7 +26,7 @@ const SkillsSection = ({ skills, edit = false }: SkillSectionProps) => {
 
   return (
     <Box sx={{ padding: "16px", margin: "0 auto" }}>
-      <Paper sx={{ padding: "16px", borderRadius: "8px" }}>
+      <Paper sx={{ padding: "16px 24px", borderRadius: "8px" }}>
         <Stack spacing={2}>
           {skills.map((item) => (
             <Stack
