@@ -46,7 +46,7 @@ const IndexPage = () => {
               alignItems={"center"}
               justifyContent={"center"}
               sx={{
-                flexDirection: { xs: "column", sm: "row" },
+                flexDirection: "column",
               }}
             >
               <Intro />

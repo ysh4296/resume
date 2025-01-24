@@ -89,7 +89,7 @@ const PortfolioDetail = ({
           gap="8px"
           sx={{ marginRight: "48px", marginTop: "-72px", marginBottom: "48px" }}
         >
-          <Typography variant="h2" sx={{ fontWeight: "bold" }}>
+          <Typography variant="h4" sx={{ fontWeight: "bold" }}>
             {portfolio.title}
           </Typography>
         </Stack>

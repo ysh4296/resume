@@ -22,6 +22,7 @@ module.exports = {
           "@styles": "./src/styles",
           "@assets": "./src/assets",
           "@contents": "./src/contents",
+          "@engine": "./src/engine",
         },
       },
     ],
