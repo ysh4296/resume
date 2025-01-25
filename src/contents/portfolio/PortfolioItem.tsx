@@ -82,6 +82,7 @@ const PortfolioItem = ({ portfolio }: PortfolioItemProps) => {
             backgroundColor: grey[200],
             color: grey[800],
             fontWeight: "bold",
+            display: { xs: "none", sm: "flex" },
           }}
         />
       </div>

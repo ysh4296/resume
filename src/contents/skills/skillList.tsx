@@ -25,7 +25,7 @@ const SkillsSection = ({ skills, edit = false }: SkillSectionProps) => {
   };
 
   return (
-    <Box sx={{ padding: "16px", margin: "0 auto" }}>
+    <Box sx={{ margin: "0 auto" }}>
       <Paper sx={{ padding: "16px 24px", borderRadius: "8px" }}>
         <Stack spacing={2}>
           {skills.map((item) => (
@@ -33,7 +33,6 @@ const SkillsSection = ({ skills, edit = false }: SkillSectionProps) => {
               key={item.category}
               sx={{
                 flexDirection: { xs: "column", sm: "row" },
-                // alignItems: "center",
               }}
               gap="16px"
             >

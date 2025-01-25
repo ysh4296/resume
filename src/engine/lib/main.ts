@@ -37,8 +37,8 @@ const main = (
   ) as HTMLCanvasElement;
   const ctx = canvas.getContext("2d");
 
-  canvas.width = 400;
-  canvas.height = 400;
+  canvas.width = 350;
+  canvas.height = 350;
 
   let currentTime = 0;
 
@@ -48,7 +48,7 @@ const main = (
       canvas,
       ctx,
       // new Vector({ x: window.innerWidth, y: window.innerHeight }),
-      new Vector({ x: 400, y: 400 }),
+      new Vector({ x: canvas.width, y: canvas.height }),
     );
     const sun = new RigidBody(
       new Circle(new Vector({ x: 200, y: 200 }), 25, "blue"),
@@ -185,14 +185,7 @@ const main = (
       registry.engine.onMouseOut(e);
     });
 
-    window.addEventListener(
-      "resize",
-      () => {
-        canvas.width = 400;
-        canvas.height = 400;
-      },
-      false,
-    );
+    window.addEventListener("resize", () => {}, false);
   }
 };
 

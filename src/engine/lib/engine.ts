@@ -143,7 +143,7 @@ export default class Engine {
     this.drawUtils.drawText(
       new Vector({
         x: 5,
-        y: 40,
+        y: 30,
       }),
       20,
       "black",
