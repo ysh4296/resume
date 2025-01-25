@@ -33,7 +33,7 @@ const Intro = () => {
             width: "400px",
             height: "400px",
             borderRadius: "8px",
-            backgroundColor: grey[700],
+            backgroundColor: grey[300],
           }}
         />
         <Title />

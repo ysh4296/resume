@@ -204,4 +204,6 @@ export default class Calculator {
       t ** 3 * p3
     );
   }
+
+  getRandomValue = (min, max) => Math.random() * (max - min) + min;
 }

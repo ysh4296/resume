@@ -5,6 +5,7 @@ import Collision from "@engine/utils/collision";
 import Draw from "@engine/utils/draw";
 import type Charactor from "./game/charactor";
 import getMousePosition from "./getMousePosition";
+import { registry } from "./main";
 import Rectangle from "./rigidbody/rectangle";
 import RigidBody from "./rigidbody/rigidbody";
 import Vector, { scaleVector, subVector } from "./vector";
@@ -42,7 +43,7 @@ export default class Engine {
     this.joints = [];
     this.calculatorUtils = Calculator.getInstance();
     this.collision = Collision.getInstance();
-    this.gravity = new Vector({ x: 0, y: 700 });
+    this.gravity = new Vector({ x: 0, y: 0 });
     this.charactorMap = new Map();
     this.world = world;
     this.iteration = 10;
@@ -103,6 +104,43 @@ export default class Engine {
   }
 
   update = (deltaTime: number) => {
+    if (
+      registry.gameTime % 240 === 0 &&
+      (this.mouseFollower === null || this.clicked)
+    ) {
+      this.objects[4].addVelocity(
+        new Vector({
+          x: this.calculatorUtils.getRandomValue(-1000, 1000),
+          y: this.calculatorUtils.getRandomValue(-1000, 1000),
+        }),
+      );
+      this.objects[5].addVelocity(
+        new Vector({
+          x: this.calculatorUtils.getRandomValue(-1000, 1000),
+          y: this.calculatorUtils.getRandomValue(-1000, 1000),
+        }),
+      );
+      this.objects[6].addVelocity(
+        new Vector({
+          x: this.calculatorUtils.getRandomValue(-1000, 1000),
+          y: this.calculatorUtils.getRandomValue(-1000, 1000),
+        }),
+      );
+
+      // 각속도 랜덤 설정 (30 ~ 100)
+      this.objects[4].angularVelocity = this.calculatorUtils.getRandomValue(
+        -60,
+        60,
+      );
+      this.objects[5].angularVelocity = this.calculatorUtils.getRandomValue(
+        -60,
+        60,
+      );
+      this.objects[6].angularVelocity = this.calculatorUtils.getRandomValue(
+        -60,
+        60,
+      );
+    }
     const fpsText = `${Math.round(1 / deltaTime)}FPS`;
     const d = 1 / 60;
     this.drawUtils.drawText(
