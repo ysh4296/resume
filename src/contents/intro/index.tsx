@@ -1,14 +1,17 @@
+import { initSpriteData } from "@engine/lib/game/data/spriteData";
 import main from "@engine/lib/main";
+import { usePlanetData } from "@hooks/usePlanetData";
 import { Box } from "@mui/material";
+import { grey } from "@mui/material/colors";
 import { useEffect } from "react";
 import Description from "./Description";
 import Title from "./Title";
-// import { initSpriteData } from "@engine/lib/game/data/spriteData";
 
 const Intro = () => {
+  const data = usePlanetData();
   useEffect(() => {
     if (document) {
-      // initSpriteData();
+      initSpriteData(data);
       main(document, () => {});
     }
   }, []);
@@ -16,7 +19,6 @@ const Intro = () => {
     <>
       <Box
         sx={{
-          // display: "flex",
           flexDirection: "column",
           justifyContent: "center",
         }}
@@ -31,6 +33,7 @@ const Intro = () => {
             width: "400px",
             height: "400px",
             borderRadius: "8px",
+            backgroundColor: grey[700],
           }}
         />
         <Title />

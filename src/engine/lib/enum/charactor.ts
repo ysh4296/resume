@@ -1,3 +1,5 @@
 export enum CHARACTOR {
-  GNOME_MAGE = 0,
+  SUN = 0,
+  MOON = 1,
+  EARTH = 2,
 }

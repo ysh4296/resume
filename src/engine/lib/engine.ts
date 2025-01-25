@@ -174,37 +174,19 @@ export default class Engine {
       });
     }
 
-    // const eraseIndex: number[] = [];
-    // /** reset position for outted objects */
-    // this.objects.forEach((object: RigidBody, componentIndex: number) => {
-    //   if (object instanceof Monster) {
-    //     if (object.hp < 0) {
-    //       // dead!
-    //       this.particleEffect.createExplosion(object.shape.centroid, 30);
-    //       this.particleEffect.createBlinking(object.shape.centroid);
-    //       this.goldGainEffect.addGlodGainText(
-    //         object.shape.centroid.x,
-    //         object.shape.centroid.y,
-    //         1000,
-    //       );
-    //       eraseIndex.push(componentIndex);
-    //     }
-    //   }
-    // });
+    this.objects.forEach((object: RigidBody) => {
+      if (!object.isKinematic) {
+        if (object.shape.centroid.isOut()) {
+          const toStartPoint = subVector(
+            new Vector({ x: 100, y: 100 }),
+            object.shape.centroid,
+          );
+          object.shape.move(toStartPoint);
 
-    //   this.objects.forEach((object: RigidBody) => {
-    //     if (!object.isKinematic) {
-    //       if (object.shape.centroid.isOut()) {
-    //         const toStartPoint = subVector(
-    //           new Vector({ x: 100, y: 100 }),
-    //           object.shape.centroid,
-    //         );
-    //         object.shape.move(toStartPoint);
-
-    //         object.velocity = new Vector({ x: 0, y: 0 });
-    //       }
-    //     }
-    //   });
+          object.velocity = new Vector({ x: 100, y: 100 });
+        }
+      }
+    });
   };
 
   draw() {

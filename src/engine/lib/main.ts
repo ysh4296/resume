@@ -1,5 +1,7 @@
 import Draw from "@engine/utils/draw";
 import Engine from "./engine";
+import { CHARACTOR } from "./enum/charactor";
+import { spriteData } from "./game/data/spriteData";
 import Circle from "./rigidbody/circle";
 import RigidBody from "./rigidbody/rigidbody";
 import Vector from "./vector";
@@ -48,48 +50,64 @@ const main = (
       // new Vector({ x: window.innerWidth, y: window.innerHeight }),
       new Vector({ x: 400, y: 400 }),
     );
-    const magician = new RigidBody(
+    const sun = new RigidBody(
       new Circle(new Vector({ x: 100, y: 100 }), 25, "blue"),
       12,
     );
-    // const spriteConfiguration: spriteConfiguration = {
-    //   width: 72,
-    //   height: 72,
-    //   row: 0,
-    //   column: 0,
-    // };
-    // magician.shape.draw = () => {
-    //   spriteData[CHARACTOR.GNOME_MAGE]?.drawSprite(
-    //     magician,
-    //     spriteConfiguration,
-    //   );
-    // };
-    registry.engine.objects.push(magician);
-    const magician1 = new RigidBody(
+    const spriteConfiguration: spriteConfiguration = {
+      width: 40,
+      height: 40,
+      row: 0,
+      column: 0,
+      drawWidth: 62,
+      drawHeight: 62,
+      xOffset: 0,
+      yOffset: 0,
+    };
+    sun.shape.draw = () => {
+      spriteData[CHARACTOR.SUN]?.drawSprite(sun, spriteConfiguration);
+    };
+    registry.engine.objects.push(sun);
+    const moon = new RigidBody(
       new Circle(new Vector({ x: 100, y: 200 }), 25, "blue"),
       12,
     );
 
-    registry.engine.objects.push(magician1);
-    const magician2 = new RigidBody(
+    registry.engine.objects.push(moon);
+    const spriteConfiguration1: spriteConfiguration = {
+      width: 31,
+      height: 31,
+      row: 0,
+      column: 0,
+      drawWidth: 58,
+      drawHeight: 58,
+      xOffset: 1,
+      yOffset: 1,
+    };
+    moon.shape.draw = () => {
+      spriteData[CHARACTOR.MOON]?.drawSprite(moon, spriteConfiguration1);
+    };
+    const earth = new RigidBody(
       new Circle(new Vector({ x: 120, y: 125 }), 25, "blue"),
       12,
     );
 
-    registry.engine.objects.push(magician2);
+    registry.engine.objects.push(earth);
 
-    const magician3 = new RigidBody(
-      new Circle(new Vector({ x: 80, y: 100 }), 25, "blue"),
-      12,
-    );
+    const spriteConfiguration2: spriteConfiguration = {
+      width: 32,
+      height: 32,
+      row: 0,
+      column: 0,
+      drawWidth: 50,
+      drawHeight: 50,
+      xOffset: 0,
+      yOffset: 0,
+    };
+    earth.shape.draw = () => {
+      spriteData[CHARACTOR.EARTH]?.drawSprite(earth, spriteConfiguration2);
+    };
 
-    magician3.addVelocity(new Vector({ x: 1000, y: 200 }));
-    magician3.angularVelocity = 500;
-    registry.engine.objects.push(magician3);
-
-    // magician.shape.draw = () => {
-    //   spriteData[CHARACTOR.GNOME_MAGE]?.drawSprite(magician, spriteConfiguration);
-    // };
     currentTime = performance.now();
     registry.setMouseEventType = (mouseType) => {
       setMouseEventType(mouseType);

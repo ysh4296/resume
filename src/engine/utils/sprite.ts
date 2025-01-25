@@ -29,21 +29,27 @@ export default class Sprite {
     const col = spriteConfiguration.column;
     const row = spriteConfiguration.row;
 
-    let rotation = 0;
+    const rotation = object.shape.orientation;
 
-    if (object.velocity.length() > 10) {
-      rotation = registry.engine.calculatorUtils.getAngleBetweenVectors(
-        new Vector({ x: 0, y: 1 }),
-        object.velocity,
-      );
-    }
+    // if (object.velocity.length() > 10) {
+    //   rotation = registry.engine.calculatorUtils.getAngleBetweenVectors(
+    //     new Vector({ x: 0, y: 1 }),
+    //     object.velocity,
+    //   );
+    // }
     const translation = subVector(
       object.shape.centroid,
-      rotateVector(new Vector({ x: 25, y: 25 }), rotation),
+      rotateVector(
+        new Vector({
+          x: spriteConfiguration.drawWidth / 2,
+          y: spriteConfiguration.drawHeight / 2,
+        }),
+        rotation,
+      ),
     );
 
-    const sx = col * spriteWidth;
-    const sy = row * spriteHeight;
+    const sx = col * spriteWidth + spriteConfiguration.xOffset;
+    const sy = row * spriteHeight + spriteConfiguration.yOffset;
     registry.engine.drawUtils.ctx.save();
     registry.engine.drawUtils.ctx.translate(translation.x, translation.y);
     registry.engine.drawUtils.ctx.rotate(rotation);
@@ -56,8 +62,8 @@ export default class Sprite {
       spriteHeight,
       0,
       0,
-      50,
-      50,
+      spriteConfiguration.drawWidth,
+      spriteConfiguration.drawHeight,
     );
 
     registry.engine.drawUtils.ctx.restore();

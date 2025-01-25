@@ -1334,6 +1334,7 @@ declare namespace GatsbyTypes {
     readonly allSanityFileAsset: SanityFileAssetConnection;
     readonly allSanityImageAsset: SanityImageAssetConnection;
     readonly allSanityJob: SanityJobConnection;
+    readonly allSanityPlanet: SanityPlanetConnection;
     readonly allSanityPost: SanityPostConnection;
     readonly allSite: SiteConnection;
     readonly allSiteBuildMetadata: SiteBuildMetadataConnection;
@@ -1348,6 +1349,7 @@ declare namespace GatsbyTypes {
     readonly sanityFileAsset: Maybe<SanityFileAsset>;
     readonly sanityImageAsset: Maybe<SanityImageAsset>;
     readonly sanityJob: Maybe<SanityJob>;
+    readonly sanityPlanet: Maybe<SanityPlanet>;
     readonly sanityPost: Maybe<SanityPost>;
     readonly site: Maybe<Site>;
     readonly siteBuildMetadata: Maybe<SiteBuildMetadata>;
@@ -1403,6 +1405,13 @@ declare namespace GatsbyTypes {
     limit: InputMaybe<Scalars["Int"]>;
     skip: InputMaybe<Scalars["Int"]>;
     sort: InputMaybe<ReadonlyArray<InputMaybe<SanityJobSortInput>>>;
+  };
+
+  type Query_allSanityPlanetArgs = {
+    filter: InputMaybe<SanityPlanetFilterInput>;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
+    sort: InputMaybe<ReadonlyArray<InputMaybe<SanityPlanetSortInput>>>;
   };
 
   type Query_allSanityPostArgs = {
@@ -1631,6 +1640,23 @@ declare namespace GatsbyTypes {
     name: InputMaybe<StringQueryOperatorInput>;
     parent: InputMaybe<NodeFilterInput>;
     startDate: InputMaybe<StringQueryOperatorInput>;
+  };
+
+  type Query_sanityPlanetArgs = {
+    _createdAt: InputMaybe<DateQueryOperatorInput>;
+    _id: InputMaybe<StringQueryOperatorInput>;
+    _key: InputMaybe<StringQueryOperatorInput>;
+    _rawImage: InputMaybe<JSONQueryOperatorInput>;
+    _rev: InputMaybe<StringQueryOperatorInput>;
+    _type: InputMaybe<StringQueryOperatorInput>;
+    _updatedAt: InputMaybe<DateQueryOperatorInput>;
+    children: InputMaybe<NodeFilterListInput>;
+    description: InputMaybe<StringQueryOperatorInput>;
+    id: InputMaybe<StringQueryOperatorInput>;
+    image: InputMaybe<SanityImageFilterInput>;
+    internal: InputMaybe<InternalFilterInput>;
+    name: InputMaybe<StringQueryOperatorInput>;
+    parent: InputMaybe<NodeFilterInput>;
   };
 
   type Query_sanityPostArgs = {
@@ -3828,6 +3854,169 @@ declare namespace GatsbyTypes {
     readonly startDate: InputMaybe<SortOrderEnum>;
   };
 
+  type SanityPlanet = Node &
+    SanityDocument & {
+      readonly _createdAt: Maybe<Scalars["Date"]>;
+      readonly _id: Maybe<Scalars["String"]>;
+      readonly _key: Maybe<Scalars["String"]>;
+      readonly _rawImage: Maybe<Scalars["JSON"]>;
+      readonly _rev: Maybe<Scalars["String"]>;
+      readonly _type: Maybe<Scalars["String"]>;
+      readonly _updatedAt: Maybe<Scalars["Date"]>;
+      readonly children: ReadonlyArray<Node>;
+      readonly description: Maybe<Scalars["String"]>;
+      readonly id: Scalars["ID"];
+      readonly image: Maybe<SanityImage>;
+      readonly internal: Internal;
+      readonly name: Maybe<Scalars["String"]>;
+      readonly parent: Maybe<Node>;
+    };
+
+  type SanityPlanet__createdAtArgs = {
+    difference: InputMaybe<Scalars["String"]>;
+    formatString: InputMaybe<Scalars["String"]>;
+    fromNow: InputMaybe<Scalars["Boolean"]>;
+    locale: InputMaybe<Scalars["String"]>;
+  };
+
+  type SanityPlanet__rawImageArgs = {
+    resolveReferences: InputMaybe<SanityResolveReferencesConfiguration>;
+  };
+
+  type SanityPlanet__updatedAtArgs = {
+    difference: InputMaybe<Scalars["String"]>;
+    formatString: InputMaybe<Scalars["String"]>;
+    fromNow: InputMaybe<Scalars["Boolean"]>;
+    locale: InputMaybe<Scalars["String"]>;
+  };
+
+  type SanityPlanetConnection = {
+    readonly distinct: ReadonlyArray<Scalars["String"]>;
+    readonly edges: ReadonlyArray<SanityPlanetEdge>;
+    readonly group: ReadonlyArray<SanityPlanetGroupConnection>;
+    readonly max: Maybe<Scalars["Float"]>;
+    readonly min: Maybe<Scalars["Float"]>;
+    readonly nodes: ReadonlyArray<SanityPlanet>;
+    readonly pageInfo: PageInfo;
+    readonly sum: Maybe<Scalars["Float"]>;
+    readonly totalCount: Scalars["Int"];
+  };
+
+  type SanityPlanetConnection_distinctArgs = {
+    field: SanityPlanetFieldSelector;
+  };
+
+  type SanityPlanetConnection_groupArgs = {
+    field: SanityPlanetFieldSelector;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
+  };
+
+  type SanityPlanetConnection_maxArgs = {
+    field: SanityPlanetFieldSelector;
+  };
+
+  type SanityPlanetConnection_minArgs = {
+    field: SanityPlanetFieldSelector;
+  };
+
+  type SanityPlanetConnection_sumArgs = {
+    field: SanityPlanetFieldSelector;
+  };
+
+  type SanityPlanetEdge = {
+    readonly next: Maybe<SanityPlanet>;
+    readonly node: SanityPlanet;
+    readonly previous: Maybe<SanityPlanet>;
+  };
+
+  type SanityPlanetFieldSelector = {
+    readonly _createdAt: InputMaybe<FieldSelectorEnum>;
+    readonly _id: InputMaybe<FieldSelectorEnum>;
+    readonly _key: InputMaybe<FieldSelectorEnum>;
+    readonly _rawImage: InputMaybe<FieldSelectorEnum>;
+    readonly _rev: InputMaybe<FieldSelectorEnum>;
+    readonly _type: InputMaybe<FieldSelectorEnum>;
+    readonly _updatedAt: InputMaybe<FieldSelectorEnum>;
+    readonly children: InputMaybe<NodeFieldSelector>;
+    readonly description: InputMaybe<FieldSelectorEnum>;
+    readonly id: InputMaybe<FieldSelectorEnum>;
+    readonly image: InputMaybe<SanityImageFieldSelector>;
+    readonly internal: InputMaybe<InternalFieldSelector>;
+    readonly name: InputMaybe<FieldSelectorEnum>;
+    readonly parent: InputMaybe<NodeFieldSelector>;
+  };
+
+  type SanityPlanetFilterInput = {
+    readonly _createdAt: InputMaybe<DateQueryOperatorInput>;
+    readonly _id: InputMaybe<StringQueryOperatorInput>;
+    readonly _key: InputMaybe<StringQueryOperatorInput>;
+    readonly _rawImage: InputMaybe<JSONQueryOperatorInput>;
+    readonly _rev: InputMaybe<StringQueryOperatorInput>;
+    readonly _type: InputMaybe<StringQueryOperatorInput>;
+    readonly _updatedAt: InputMaybe<DateQueryOperatorInput>;
+    readonly children: InputMaybe<NodeFilterListInput>;
+    readonly description: InputMaybe<StringQueryOperatorInput>;
+    readonly id: InputMaybe<StringQueryOperatorInput>;
+    readonly image: InputMaybe<SanityImageFilterInput>;
+    readonly internal: InputMaybe<InternalFilterInput>;
+    readonly name: InputMaybe<StringQueryOperatorInput>;
+    readonly parent: InputMaybe<NodeFilterInput>;
+  };
+
+  type SanityPlanetGroupConnection = {
+    readonly distinct: ReadonlyArray<Scalars["String"]>;
+    readonly edges: ReadonlyArray<SanityPlanetEdge>;
+    readonly field: Scalars["String"];
+    readonly fieldValue: Maybe<Scalars["String"]>;
+    readonly group: ReadonlyArray<SanityPlanetGroupConnection>;
+    readonly max: Maybe<Scalars["Float"]>;
+    readonly min: Maybe<Scalars["Float"]>;
+    readonly nodes: ReadonlyArray<SanityPlanet>;
+    readonly pageInfo: PageInfo;
+    readonly sum: Maybe<Scalars["Float"]>;
+    readonly totalCount: Scalars["Int"];
+  };
+
+  type SanityPlanetGroupConnection_distinctArgs = {
+    field: SanityPlanetFieldSelector;
+  };
+
+  type SanityPlanetGroupConnection_groupArgs = {
+    field: SanityPlanetFieldSelector;
+    limit: InputMaybe<Scalars["Int"]>;
+    skip: InputMaybe<Scalars["Int"]>;
+  };
+
+  type SanityPlanetGroupConnection_maxArgs = {
+    field: SanityPlanetFieldSelector;
+  };
+
+  type SanityPlanetGroupConnection_minArgs = {
+    field: SanityPlanetFieldSelector;
+  };
+
+  type SanityPlanetGroupConnection_sumArgs = {
+    field: SanityPlanetFieldSelector;
+  };
+
+  type SanityPlanetSortInput = {
+    readonly _createdAt: InputMaybe<SortOrderEnum>;
+    readonly _id: InputMaybe<SortOrderEnum>;
+    readonly _key: InputMaybe<SortOrderEnum>;
+    readonly _rawImage: InputMaybe<SortOrderEnum>;
+    readonly _rev: InputMaybe<SortOrderEnum>;
+    readonly _type: InputMaybe<SortOrderEnum>;
+    readonly _updatedAt: InputMaybe<SortOrderEnum>;
+    readonly children: InputMaybe<NodeSortInput>;
+    readonly description: InputMaybe<SortOrderEnum>;
+    readonly id: InputMaybe<SortOrderEnum>;
+    readonly image: InputMaybe<SanityImageSortInput>;
+    readonly internal: InputMaybe<InternalSortInput>;
+    readonly name: InputMaybe<SortOrderEnum>;
+    readonly parent: InputMaybe<NodeSortInput>;
+  };
+
   type SanityPost = Node &
     SanityDocument & {
       readonly _createdAt: Maybe<Scalars["Date"]>;
@@ -4862,6 +5051,25 @@ declare namespace GatsbyTypes {
             readonly gatsbyImageData: import(
               "gatsby-plugin-image",
             ).IGatsbyImageData;
+          } | null;
+        } | null;
+      }>;
+    };
+  };
+
+  type GetAllPlanetsQueryVariables = Exact<{ [key: string]: never }>;
+
+  type GetAllPlanetsQuery = {
+    readonly allSanityPlanet: {
+      readonly nodes: ReadonlyArray<{
+        readonly name: string | null;
+        readonly description: string | null;
+        readonly image: {
+          readonly asset: {
+            readonly gatsbyImageData: import(
+              "gatsby-plugin-image",
+            ).IGatsbyImageData;
+            readonly url: string | null;
           } | null;
         } | null;
       }>;

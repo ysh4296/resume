@@ -24,4 +24,8 @@ type spriteConfiguration = {
   height: number;
   row: number;
   column: number;
+  drawWidth: number;
+  drawHeight: number;
+  xOffset: number;
+  yOffset: number;
 };
