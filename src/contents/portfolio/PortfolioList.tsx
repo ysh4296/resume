@@ -87,23 +87,16 @@ const PortfolioList = ({ skills, portfolios }: PortfolioListProps) => {
         }}
         onClick={toggleSkillsSection} // 필터 영역 밖 클릭 시 닫기
       />
-      {/* 선택된 스킬 표시 */}
-
-      <div style={styles.selectedSkillsContainer}>
-        <Stack flexDirection="row">
-          <Box
-            sx={{
-              textAlign: "center",
-              color: "#555",
-              marginX: "20px",
-              textWrap: "nowrap",
-              overflowY: "visible",
-              alignContent: "center",
-            }}
-          >
-            <strong>선택된 필터</strong>
-          </Box>
-
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          marginBottom: "16px",
+          justifyContent: "space-between",
+          width: "100%",
+        }}
+      >
+        <Stack flexDirection="row" justifyContent="space-between" width="100%">
           {/* Reset 버튼 */}
           <Chip
             icon={<RestartAltIcon style={{ color: "#fff" }} />}
@@ -114,6 +107,7 @@ const PortfolioList = ({ skills, portfolios }: PortfolioListProps) => {
               fontWeight: "bold",
               marginRight: "8px",
               cursor: "pointer",
+              marginLeft: "8px",
             }}
             onClick={resetSkill}
           />
@@ -137,46 +131,44 @@ const PortfolioList = ({ skills, portfolios }: PortfolioListProps) => {
               />
             ))}
           </div>
-        </Stack>
-        <Stack
-          direction="row-reverse"
-          justifyContent="space-between"
-          sx={{ zIndex: 1000 }}
-        >
-          {/* 필터 아이콘 */}
-          <Chip
-            ref={filterButtonRef}
-            icon={<FilterAltIcon style={{ color: "#fff" }} />}
-            label="Filter"
-            sx={{
-              backgroundColor: grey[600],
-              color: "#fff",
-              fontWeight: "bold",
-              marginRight: "8px",
-              cursor: "pointer",
-            }}
-            onClick={toggleSkillsSection}
-          />
-          {/* SkillsSection - Icon 기준 Popup */}
-
-          <Box sx={{ position: "relative" }}>
-            <div
-              ref={skillsSectionRef}
-              style={{
-                ...styles.skillsSectionPopup,
-                transition: "opacity 0.4s ease, transform 0.4s ease", // opacity와 transform 전환 추가
-                opacity: isSkillsSectionOpen ? 1 : 0, // 열릴 때 1, 닫힐 때 0
-                transform: isSkillsSectionOpen
-                  ? "translateY(0)" // 열릴 때 원래 위치
-                  : "translateY(-10px)", // 닫힐 때 살짝 위로 이동
-                pointerEvents: isSkillsSectionOpen ? "auto" : "none", // 닫혔을 때 클릭 방지
+          <Stack
+            direction="row-reverse"
+            justifyContent="space-between"
+            sx={{ zIndex: 1000 }}
+          >
+            {/* 필터 아이콘 */}
+            <Chip
+              ref={filterButtonRef}
+              icon={<FilterAltIcon style={{ color: "#fff" }} />}
+              label="Filter"
+              sx={{
+                backgroundColor: grey[600],
+                color: "#fff",
+                fontWeight: "bold",
+                marginRight: "8px",
+                cursor: "pointer",
               }}
-            >
-              <SkillFilter skills={skills} edit />
-            </div>
-          </Box>
+              onClick={toggleSkillsSection}
+            />
+            <Box sx={{ position: "relative" }}>
+              <div
+                ref={skillsSectionRef}
+                style={{
+                  ...styles.skillsSectionPopup,
+                  transition: "opacity 0.4s ease, transform 0.4s ease", // opacity와 transform 전환 추가
+                  opacity: isSkillsSectionOpen ? 1 : 0, // 열릴 때 1, 닫힐 때 0
+                  transform: isSkillsSectionOpen
+                    ? "translateY(0)" // 열릴 때 원래 위치
+                    : "translateY(-10px)", // 닫힐 때 살짝 위로 이동
+                  pointerEvents: isSkillsSectionOpen ? "auto" : "none", // 닫혔을 때 클릭 방지
+                }}
+              >
+                <SkillFilter skills={skills} edit />
+              </div>
+            </Box>
+          </Stack>
         </Stack>
-      </div>
+      </Box>
 
       {/* 포트폴리오 리스트 */}
       {portfolios.length > 0 ? (
@@ -214,15 +206,10 @@ const styles: { [key: string]: React.CSSProperties } = {
     marginLeft: "72px",
     marginRight: "72px",
   },
-  selectedSkillsContainer: {
-    display: "flex",
-    alignItems: "center",
-    marginBottom: "16px",
-    justifyContent: "space-between",
-  },
   chipContainer: {
     display: "flex",
-    flexWrap: "nowrap", // 가로로 나열하고 넘치면 다음 줄로
+    justifyContent: "flex-start",
+    width: "100%",
     gap: "8px",
     overflow: "auto",
   },

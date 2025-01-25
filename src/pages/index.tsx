@@ -46,7 +46,10 @@ const IndexPage = () => {
         >
           <MainNavigation />
         </Box>
-        <Box>
+        <Box
+          margin="auto"
+          sx={{ maxWidth: { xs: "100%", sm: "70vw", md: "80vw" } }}
+        >
           <AnchorDiv id="intro">
             <Title>Intro</Title>
             <Stack
