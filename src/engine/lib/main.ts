@@ -51,7 +51,7 @@ const main = (
       new Vector({ x: 400, y: 400 }),
     );
     const sun = new RigidBody(
-      new Circle(new Vector({ x: 100, y: 100 }), 25, "blue"),
+      new Circle(new Vector({ x: 200, y: 200 }), 25, "blue"),
       12,
     );
     const spriteConfiguration: spriteConfiguration = {
@@ -67,12 +67,32 @@ const main = (
     sun.shape.draw = () => {
       spriteData[CHARACTOR.SUN]?.drawSprite(sun, spriteConfiguration);
     };
+    sun.addVelocity(
+      new Vector({
+        x: registry.engine.calculatorUtils.getRandomValue(-1000, 1000),
+        y: registry.engine.calculatorUtils.getRandomValue(-1000, 1000),
+      }),
+    );
+    sun.angularVelocity = registry.engine.calculatorUtils.getRandomValue(
+      -60,
+      60,
+    );
     registry.engine.objects.push(sun);
     const moon = new RigidBody(
-      new Circle(new Vector({ x: 100, y: 200 }), 25, "blue"),
+      new Circle(new Vector({ x: 200, y: 200 }), 25, "blue"),
       12,
     );
 
+    moon.addVelocity(
+      new Vector({
+        x: registry.engine.calculatorUtils.getRandomValue(-1000, 1000),
+        y: registry.engine.calculatorUtils.getRandomValue(-1000, 1000),
+      }),
+    );
+    moon.angularVelocity = registry.engine.calculatorUtils.getRandomValue(
+      -60,
+      60,
+    );
     registry.engine.objects.push(moon);
     const spriteConfiguration1: spriteConfiguration = {
       width: 31,
@@ -88,10 +108,20 @@ const main = (
       spriteData[CHARACTOR.MOON]?.drawSprite(moon, spriteConfiguration1);
     };
     const earth = new RigidBody(
-      new Circle(new Vector({ x: 120, y: 125 }), 25, "blue"),
+      new Circle(new Vector({ x: 200, y: 200 }), 25, "blue"),
       12,
     );
 
+    earth.addVelocity(
+      new Vector({
+        x: registry.engine.calculatorUtils.getRandomValue(-1000, 1000),
+        y: registry.engine.calculatorUtils.getRandomValue(-1000, 1000),
+      }),
+    );
+    earth.angularVelocity = registry.engine.calculatorUtils.getRandomValue(
+      -60,
+      60,
+    );
     registry.engine.objects.push(earth);
 
     const spriteConfiguration2: spriteConfiguration = {

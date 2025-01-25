@@ -3,7 +3,6 @@ import type Joint from "@engine/joints/joint";
 import Calculator from "@engine/utils/calculator";
 import Collision from "@engine/utils/collision";
 import Draw from "@engine/utils/draw";
-import type Charactor from "./game/charactor";
 import getMousePosition from "./getMousePosition";
 import { registry } from "./main";
 import Rectangle from "./rigidbody/rectangle";
@@ -28,7 +27,6 @@ export default class Engine {
   grid: HashGrid;
   camera: CameraType;
   gravity: Vector;
-  charactorMap: Map<number, Charactor>;
   clicked: boolean;
   mouseFollower: Vector | null;
 
@@ -44,7 +42,6 @@ export default class Engine {
     this.calculatorUtils = Calculator.getInstance();
     this.collision = Collision.getInstance();
     this.gravity = new Vector({ x: 0, y: 0 });
-    this.charactorMap = new Map();
     this.world = world;
     this.iteration = 10;
     this.camera = {
@@ -105,7 +102,7 @@ export default class Engine {
 
   update = (deltaTime: number) => {
     if (
-      registry.gameTime % 240 === 0 &&
+      registry.gameTime % 600 === 0 &&
       (this.mouseFollower === null || this.clicked)
     ) {
       this.objects[4].addVelocity(
@@ -152,8 +149,6 @@ export default class Engine {
       "black",
       fpsText,
     );
-
-    this.charactorMap.forEach((charactor) => charactor.update());
 
     this.grid.refreshGrid(this.objects);
     this.handleJoints();

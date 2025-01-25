@@ -1,5 +1,4 @@
 import type RigidBody from "../rigidbody/rigidbody";
-import type Skill from "./skill/skill";
 
 export default class Charactor {
   /**
@@ -9,18 +8,16 @@ export default class Charactor {
   public id: number; // charactorId
   public stat: Stat;
   public battleStat: BattleStat;
-  public skill: Skill;
   public ability: any;
   public buffs: any;
   public debuff: any;
   public Equipment: any[] | undefined;
   public object: RigidBody;
 
-  constructor(id: number, stats: Stat, skill: Skill, object: RigidBody) {
+  constructor(id: number, stats: Stat, object: RigidBody) {
     this.id = id;
     this.stat = stats;
     this.battleStat = this.calculateBattleStat(stats);
-    this.skill = skill;
     /**
      * not just adding skill data to charactor
      * it could modified by value copy
@@ -34,15 +31,6 @@ export default class Charactor {
     }
     if (this.battleStat.Resource.HP < this.battleStat.HP) {
       this.battleStat.Resource.HP += this.battleStat.HPRegen;
-    }
-
-    if (this.skill.cost < this.battleStat.MP) {
-      // execute Skill
-      if (this.skill.canApply(this)) {
-        const target = this.skill.setTarget(this, this.skill.limit);
-        if (target === null) return;
-        this.skill.apply(this, target);
-      }
     }
   }
 
