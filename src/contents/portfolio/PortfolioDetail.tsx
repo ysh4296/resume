@@ -55,9 +55,9 @@ const PortfolioDetail = ({
         onClose={onClose}
         sx={{
           "& .MuiDrawer-paper": {
-            width: "80vw",
+            width: { xs: "100vw", sm: "100vw", md: "80vw" },
             backgroundColor: "#f9f9f9",
-            padding: "72px",
+            padding: { xs: "24px", sm: "48px", md: "72px" },
           },
         }}
       >
@@ -193,12 +193,12 @@ const PortfolioDetail = ({
           <SkillsSection skills={portfolio.skills} />
         </Box>
 
-        <Box sx={{ marginBottom: "48px" }}>
+        <Paper sx={{ marginBottom: "48px", padding: "24px" }}>
           <Markdown>
             {portfolio.content || "No additional content available."}
           </Markdown>
           {/* </Box> */}
-        </Box>
+        </Paper>
         {/* Images */}
         <Box sx={{ marginBottom: "24px" }}>
           <Stack
@@ -288,18 +288,6 @@ const PortfolioDetail = ({
                         }}
                       />
                     </Paper>
-                    // <Box
-                    //   key={JSON.stringify(image.asset.gatsbyImageData.images)}
-                    //   sx={{
-                    //     borderRadius: "8px",
-                    //     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-                    //     backgroundColor: "#fff",
-                    //     cursor: "pointer",
-                    //   }}
-                    //   onClick={() => handleImageClick(gatsbyImage)}
-                    // >
-
-                    // </Box>
                   )
                 );
               })}

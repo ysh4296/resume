@@ -60,13 +60,22 @@ const PortfolioList = ({ skills, portfolios }: PortfolioListProps) => {
   }, [isSkillsSectionOpen]);
 
   return (
-    <div style={styles.listContainer}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "16px", // 각 카드 간격
+        paddingTop: "16px",
+        minHeight: "800px",
+        marginX: { xs: "24px", sm: "36px", md: "72px" },
+      }}
+    >
       <Box
         sx={{
           position: "fixed",
           top: 0,
           left: 0,
-          // width: "100vw",
+          width: "100vw",
           height: "100vh",
           backgroundColor: isSkillsSectionOpen
             ? "rgba(0, 0, 0, 0.3)"
@@ -184,7 +193,7 @@ const PortfolioList = ({ skills, portfolios }: PortfolioListProps) => {
           </Typography>
         </Box>
       )}
-    </div>
+    </Box>
   );
 };
 

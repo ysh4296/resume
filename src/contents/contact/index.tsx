@@ -1,6 +1,7 @@
+import Body from "@components/Body";
 import EmailIcon from "@mui/icons-material/Email";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import { Box, Link, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const Contact = () => {
   return (
@@ -11,33 +12,17 @@ const Contact = () => {
       <Box
         sx={{
           display: "flex",
-          flexDirection: { xs: "row", sm: "column" },
+          flexDirection: "column",
           gap: 2,
         }}
       >
-        {/* 이메일 */}
         <Box display="flex" alignItems="center" gap={1}>
           <EmailIcon color="primary" />
-          <Link
-            href="mailto:dbtmdgns4296@naver.com"
-            underline="hover"
-            color="inherit"
-          >
-            email
-          </Link>
+          <Body>dbtmdgns4296@naver.com</Body>
         </Box>
-
-        {/* 깃허브 */}
         <Box display="flex" alignItems="center" gap={1}>
           <GitHubIcon color="primary" />
-          <Link
-            href="https://github.com/ysh4296"
-            underline="hover"
-            color="inherit"
-            target="_blank"
-          >
-            github
-          </Link>
+          <Body>https://github.com/ysh4296</Body>
         </Box>
       </Box>
     </Box>

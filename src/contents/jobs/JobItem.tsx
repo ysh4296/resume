@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import {
   GatsbyImage,
   type IGatsbyImageData,
@@ -22,7 +23,15 @@ const JobItem: React.FC<JobItemProps> = ({
   const gatsbyImage = image ? getImage(image) : null;
 
   return (
-    <div style={styles.container}>
+    <Box
+      sx={{
+        display: "flex",
+        padding: "16px",
+        marginBottom: "16px",
+        flexDirection: { xs: "column", sm: "column", md: "row" },
+        gap: "16px",
+      }}
+    >
       {gatsbyImage && (
         <div style={styles.imageWrapper}>
           <GatsbyImage
@@ -45,7 +54,7 @@ const JobItem: React.FC<JobItemProps> = ({
           <strong>근무 기간:</strong> {startDate} - {endDate}
         </p>
       </div>
-    </div>
+    </Box>
   );
 };
 
@@ -53,12 +62,6 @@ export default JobItem;
 
 // 스타일링
 const styles: { [key: string]: React.CSSProperties } = {
-  container: {
-    display: "flex",
-    padding: "16px",
-    marginBottom: "16px",
-    gap: "16px",
-  },
   imageWrapper: {
     flex: "0 0 150px", // 고정 너비
     height: "150px", // 고정 높이

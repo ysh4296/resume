@@ -6,7 +6,7 @@ const JobList = () => {
   const jobs = useJobData();
 
   return (
-    <Box marginX="144px">
+    <Box sx={{ marginX: { xs: "48px", sm: "48px", md: "144px" } }}>
       {jobs.map((job) => (
         <JobItem
           key={job.name}

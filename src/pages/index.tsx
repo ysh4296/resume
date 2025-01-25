@@ -37,7 +37,15 @@ const IndexPage = () => {
         overflow="auto"
         style={{ scrollBehavior: "smooth" }}
       >
-        <MainNavigation />
+        <Box
+          sx={{
+            position: "sticky",
+            top: 0,
+            display: { xs: "none", sm: "block" },
+          }}
+        >
+          <MainNavigation />
+        </Box>
         <Box>
           <AnchorDiv id="intro">
             <Title>Intro</Title>
