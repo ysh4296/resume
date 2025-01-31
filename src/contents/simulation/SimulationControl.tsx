@@ -28,7 +28,7 @@ const SimulationControl = ({
     <Box
       sx={{
         width: "100%",
-        paddingX: { xs: "16px", sm: "16px" },
+        paddingX: { xs: "16px", sm: "32px", md: "48px" },
       }}
     >
       <Typography variant="h6">제가 만든 물리엔진입니다.</Typography>
