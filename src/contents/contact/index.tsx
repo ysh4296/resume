@@ -17,11 +17,11 @@ const Contact = () => {
         }}
       >
         <Box display="flex" alignItems="center" gap={1}>
-          <EmailIcon color="primary" />
+          <EmailIcon />
           <Body>dbtmdgns4296@naver.com</Body>
         </Box>
         <Box display="flex" alignItems="center" gap={1}>
-          <GitHubIcon color="primary" />
+          <GitHubIcon />
           <Body>https://github.com/ysh4296</Body>
         </Box>
       </Box>
